@@ -21,6 +21,7 @@
 ### Copilot.vim
 
 - [Copilot.vim](https://github.com/github/copilot.vim) - Copilot.vim is a plugin that integrates GitHub Copilot into Vim.
+  G
 
 ### Hammerspoon
 
@@ -33,3 +34,11 @@
 ### Lazygit
 
 - [Lazygit](https://github.com/jesseduffield/lazygit) - LazyGit is a terminal-based Git client that simplifies Git operations with an intuitive, keyboard-driven interface. It allows you to stage, commit, push, pull, and manage branches quickly without complex Git commands.
+
+### LF
+
+- [LF](https://github.com/gokcehan/lf) - A terminal file manager.
+
+### Taskell
+
+- [Taskell](https://taskell.app/) - A command-line Kanban board/task manager.
