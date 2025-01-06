@@ -25,3 +25,11 @@
 ### Hammerspoon
 
 - [Hammerspoon](https://www.hammerspoon.org/) - This is a tool for powerful automation of OS X. At its core, Hammerspoon is just a bridge between the operating system and a Lua scripting engine.
+
+### Hushlogin
+
+- [Hushlogin](https://www.cyberciti.biz/howto/turn-off-the-login-banner-in-linux-unix-with-hushlogin-file/) - Turn off the login banner in Linux or Unix.
+
+### Lazygit
+
+- [Lazygit](https://github.com/jesseduffield/lazygit) - LazyGit is a terminal-based Git client that simplifies Git operations with an intuitive, keyboard-driven interface. It allows you to stage, commit, push, pull, and manage branches quickly without complex Git commands.
