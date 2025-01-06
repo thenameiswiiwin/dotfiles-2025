@@ -18,4 +18,10 @@
 
 - [Dooit](https://dooit-org.github.io/dooit/) - A task manager that can be used in the terminal.
 
-###
+### Copilot.vim
+
+- [Copilot.vim](https://github.com/github/copilot.vim) - Copilot.vim is a plugin that integrates GitHub Copilot into Vim.
+
+### Hammerspoon
+
+- [Hammerspoon](https://www.hammerspoon.org/) - This is a tool for powerful automation of OS X. At its core, Hammerspoon is just a bridge between the operating system and a Lua scripting engine.
