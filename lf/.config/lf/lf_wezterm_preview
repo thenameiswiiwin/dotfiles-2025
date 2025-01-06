@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+file=$1
+w=$2
+h=$3
+x=$4
+y=$5
+
+# Check if the file is an image
+if [[ "$(file -Lb --mime-type "$file")" =~ ^image ]]; then
+    # Use viu to preview the image
+    viu --width "$w" --height "$h" --quiet "$file"
+    exit 1
+fi
+
+# Fall back to pistol for other file types
+pistol "$file"

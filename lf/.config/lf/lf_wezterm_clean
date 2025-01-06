@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Check if an argument is provided (path to an image file)
+if [[ -z "$1" ]]; then
+    echo "Usage: lf_wezterm_clean <image-file>"
+    exit 1
+fi
+
+# Display the image using viu
+viu --quiet "$1"
