@@ -13,3 +13,9 @@
 ### Btop
 
 - [Btop](https://github.com/aristocratos/btop) - Resource monitor that shows usage and stats for processor, memory, disks, network and processes.
+
+### Dooit
+
+- [Dooit](https://dooit-org.github.io/dooit/) - A task manager that can be used in the terminal.
+
+###
