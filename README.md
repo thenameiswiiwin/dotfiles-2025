@@ -41,8 +41,8 @@ stow bin kitty lazygit nvim tmux wezterm zsh zellij bat lf pistol
 
 ```bash
 chmod +x osx.sh install.sh
-./osx.sh
 ./install.sh
+./osx.sh
 ```
 
 ## Features
