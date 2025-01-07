@@ -1,4 +1,4 @@
-# dotfile-2025
+# Dotfile 2025
 
 ## Getting Started
 
@@ -28,8 +28,9 @@ brew bundle
 
 ### Symlink dotfiles
 
-````bash
+```bash
 stow bin kitty lazygit nvim tmux wezterm zsh zellij bat lf pistol
+```
 
 ## Scripts
 
@@ -42,7 +43,7 @@ stow bin kitty lazygit nvim tmux wezterm zsh zellij bat lf pistol
 chmod +x osx.sh install.sh
 ./osx.sh
 ./install.sh
-````
+```
 
 ## Features
 
