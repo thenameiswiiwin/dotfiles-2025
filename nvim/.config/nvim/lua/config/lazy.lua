@@ -46,11 +46,13 @@ require('lazy').setup({
     enabled = false, -- Disable automatic plugin update checks
     notify = false, -- Disable notifications
   },
+  debug = false,
   performance = {
     rtp = {
       -- Disable unused runtime plugins for better performance
       disabled_plugins = {
         'gzip',
+        'netrwPlugin',
         'tarPlugin',
         'tohtml',
         'tutor',

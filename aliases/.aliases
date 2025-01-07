@@ -9,10 +9,14 @@ alias nvim-kick="NVIM_APPNAME=kickstart nvim"
 alias nvim-chad="NVIM_APPNAME=NvChad nvim"
 alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
 
+# Quickly edit dotfiles
+alias dotfiles="nvim ~/.dotfiles"
+
 # Eza
 alias l='eza'
 alias ll='l -lh --git --icons'
 alias la='ll -a'
+alias ls='l --icons --long --header --group-directories-first'
 
 # Zsh
 alias zc='nvim $HOME/.zshrc'
@@ -37,6 +41,9 @@ alias cb='git branch --sort=-committerdate | fzf --header "Checkout Recent Branc
 # GitHub Pages
 alias gad='git add dist -f'
 alias gsp='git subtree push --prefix dist origin gh-pages'
+
+# Smarter directory navigation
+alias z='zoxide'
 
 # Tmux
 alias t='tmux'
