@@ -1,0 +1,15 @@
+# Ignore temporary and debug files
+tt.*
+debug
+.repro
+foo.*
+
+# Ignore test files and logs
+.tests
+*.log
+
+# Ignore tags and generated documentation
+doc/tags
+
+# Ignore data directories or files
+data/
