@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 
 -- Function to select color scheme based on appearance
-function scheme_for_appearance(appearance)
+local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
 		return "Catppuccin Frappe"
 	else
@@ -14,15 +14,16 @@ local config = {
 	color_scheme = scheme_for_appearance(wezterm.gui.get_appearance()),
 	font = wezterm.font_with_fallback({
 		"Victor Mono",
+		"JetBrains Mono",
 		-- "Rec Mono Duotone",
 		{ family = "Symbols Nerd Font Mono", scale = 0.75 },
 	}),
+	font_size = 16,
 	window_background_opacity = 1.9,
 	macos_window_background_blur = 10,
 	force_reverse_video_cursor = true,
 	window_decorations = "RESIZE",
 	use_cap_height_to_scale_fallback_fonts = true,
-	font_size = 16,
 	scrollback_lines = 5000,
 	hide_tab_bar_if_only_one_tab = true,
 	window_close_confirmation = "NeverPrompt",

@@ -58,12 +58,6 @@ function ghgist() {
   GH_FORCE_TTY=100% gh gist list --limit 20 | fzf --ansi --preview 'GH_FORCE_TTY=100% gh gist view {1}' --preview-window down | awk '{print $1}' | xargs gh gist edit
 }
 
-# Neovim configuration aliases
-alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
-alias nvim-kick="NVIM_APPNAME=kickstart nvim"
-alias nvim-chad="NVIM_APPNAME=NvChad nvim"
-alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
-
 # Function to select and open a specific Neovim configuration
 function nvims() {
   items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
@@ -84,8 +78,8 @@ local dev_commands=(
   'fkill' 'lazydocker' 'ntl' 'ranger'
   'speed-test' 'serve' 'vtop' 'htop' 'btop'
   'lazygit' 'gitui' 'tig' 'tldr'
-  'calcurse' 'cmatrix' 'cowsay' 'exa' 'fd' 'dooit' 'taskell' 'gh' 'gitui' 'hyperfine' 'lolcat'
-  'mc' 'navi' 'neofetch' 'newsboat' 'nnn' 'tree' 'vhs' 'vifm' 'zellij' 'tmux' 'zoxide'
+  'calcurse' 'cmatrix' 'exa' 'fd' 'dooit' 'taskell' 'gh' 'gitui' 'hyperfine'
+  'mc' 'navi' 'neofetch' 'nnn' 'tree' 'vhs' 'vifm' 'zellij' 'tmux' 'zoxide'
 )
 
 alias dev='printf "%s\n" "${dev_commands[@]}" | fzf --height 20% --header Commands | bash'

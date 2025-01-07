@@ -2,6 +2,13 @@
 alias bu='brew cleanup && brew update && brew upgrade && brew cleanup && brew doctor'
 alias bo='brew outdated'
 
+# Neovim configuration aliases
+alias v='nvim'
+alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+alias nvim-kick="NVIM_APPNAME=kickstart nvim"
+alias nvim-chad="NVIM_APPNAME=NvChad nvim"
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+
 # Eza
 alias l='eza'
 alias ll='l -lh --git --icons'
@@ -37,8 +44,6 @@ alias ta='t attach -t'
 alias tc='nvim $HOME/.tmux.conf'
 alias tcs='tmux source $HOME/.tmux.conf'
 
-# NeoVim
-alias v='nvim'
 
 # Replace Cat with Bat
 alias cat='bat --paging=never --style=plain'
@@ -92,9 +97,6 @@ alias t='tmux'
 alias ta="t a -t"
 alias tc="v $HOME/.tmux.conf"
 alias tcs="tmux source $HOME/.tmux.conf"
-
-# NeoVim
-alias v='nvim'
 
 # Cat -> Bat
 alias cat='bat'
