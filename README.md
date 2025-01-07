@@ -101,6 +101,10 @@ chmod +x osx.sh install.sh
 
 - [LF](https://github.com/gokcehan/lf) - A terminal file manager.
 
+## Rectangle
+
+- [Rectangle](https://rectangleapp.com/) - A window manager for macOS.
+
 ### Taskell
 
 - [Taskell](https://taskell.app/) - A command-line Kanban board/task manager.
