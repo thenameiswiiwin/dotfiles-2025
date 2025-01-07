@@ -1,14 +1,14 @@
-# A xterm-256color based TERMINFO that adds support for italic text.
+# xterm-256color-italic: An xterm-256color based TERMINFO with italic text support.
 #
-# Install:
+# Installation:
 #   tic xterm-256color-italic.terminfo
 #
 # Usage:
 #   export TERM=xterm-256color-italic
 #
 xterm-256color-italic|xterm with 256 colors and italic support,
-	sitm=\E[3m,    # Enter italics mode
-	ritm=\E[23m,   # Exit italics mode
-	SMACS=\E[11m,  # Enter alternate character set
-	RMACS=\E[10m,  # Exit alternate character set
-	use=xterm-256color,
+    sitm=\E[3m,    # Enter italics mode
+    ritm=\E[23m,   # Exit italics mode
+    SMACS=\E[11m,  # Enter alternate character set
+    RMACS=\E[10m,  # Exit alternate character set
+    use=xterm-256color  # Inherits xterm-256color settings
