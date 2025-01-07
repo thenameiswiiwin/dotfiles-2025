@@ -1,4 +1,4 @@
-# Dotfile 2025
+# Dotfiles 2025
 
 ## Getting Started
 
@@ -118,7 +118,3 @@ chmod +x osx.sh install.sh
 - [LazyVim](https://github.com/LazyVim/LazyVim) - A pre-configured Neovim setup optimized for developers.
 
 ---
-
-```
-
-```
