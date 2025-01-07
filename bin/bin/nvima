@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# Define an associative array with configurations
 declare -A items=(
 	[default]=" default"
 	[kickstart]=" kickstart"
@@ -8,25 +9,33 @@ declare -A items=(
 	[AstroNvim]=" AstroNvim"
 )
 
-# echo ${items[kickstart]}
-# echo ${items[LazyVim]}
-# for val in "${items[@]}"; do echo $val; done
-# echo "${items[@]}"
-# for key in "${!items[@]}"; do echo "$key"; done
-# printf "%s\n" "${!items[@]}"
-
+# Display all keys and values
+printf "Keys:\n"
 printf "%s\n" "${!items[@]}"
+
+printf "\nValues:\n"
 printf "%s\n" "${items[@]}"
 
-config=$(printf "%s\n" "${items[@]}" | fzf --with-nth=2.. --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+# Use fzf for selection with formatted prompt and layout
+config=$(printf "%s\n" "${items[@]}" | fzf --with-nth=2.. \
+	--prompt=" Neovim Config  " \
+	--height=50% \
+	--layout=reverse \
+	--border \
+	--exit-0)
 
-echo $config
+# Output the selected configuration
+if [[ -n $config ]]; then
+	echo "Selected: $config"
+else
+	echo "Nothing selected"
+	exit 0
+fi
 
-# if [[ -z $config ]]; then
-# 	echo "Nothing selected"
-# 	return 0
-# elif [[ $config == "default" ]]; then
-# 	config=""
-# fi
-#
-# NVIM_APPNAME=$config nvim $@
+# If the default config is selected, set it to an empty string
+if [[ $config == " default" ]]; then
+	config=""
+fi
+
+# Launch Neovim with the selected configuration
+NVIM_APPNAME="$config" nvim "$@"

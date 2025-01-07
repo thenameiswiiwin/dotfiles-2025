@@ -1,0 +1,43 @@
+# macOS system files
+#
+.DS_Store
+
+# Vim and Neovim files
+.netrwhist
+
+# Git directory
+.git
+
+# Neovim plugin manager
+packer_compiled.lua
+
+# Tmux plugins
+tmux/.tmux/plugins/
+
+# Common OS-generated files
+Thumbs.db
+Desktop.ini
+
+# Backup files
+*.swp
+*.swo
+*.tmp
+
+# Logs and temporary files
+*.log
+*.bak
+
+# Node.js dependency directory
+node_modules/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Ruby gems
+*.gem
+
+# System and IDE-specific files
+.idea/
+.vscode/
+*.iml

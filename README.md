@@ -1,6 +1,68 @@
 # dotfile-2025
 
+## Getting Started
+
+### Install Brew
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+### Clone this Repo
+
+```bash
+git clone git@github.com:thenameiswiiwin/dotfiles-2025.git ~/.dotfiles
+```
+
+### List Files
+
+```bash
+tree -a -I '.git|.DS_Store'
+```
+
+### Install Packages
+
+```bash
+brew bundle
+```
+
+### Symlink dotfiles
+
+````bash
+stow bin kitty lazygit nvim tmux wezterm zsh zellij bat lf pistol
+
+## Scripts
+
+- **osx.sh**: Configures macOS-specific settings to optimize your development environment.
+- **install.sh**: Automates the installation of essential tools and configurations. Run this to set up your environment quickly.
+
+### Run Scripts
+
+```bash
+chmod +x osx.sh install.sh
+./osx.sh
+./install.sh
+````
+
 ## Features
+
+### Neovim
+
+- [Neovim](https://neovim.io/) - A modern, extensible Vim-based text editor.
+- **LazyVim** - A pre-configured Neovim setup that optimizes for productivity.
+- **AstroNvim** - A highly customizable Neovim user interface framework.
+
+### Kitty
+
+- [Kitty](https://sw.kovidgoyal.net/kitty/) - A GPU-based terminal emulator that is fast and feature-rich.
+
+### WezTerm
+
+- [WezTerm](https://wezfurlong.org/wezterm/) - A GPU-accelerated terminal emulator and multiplexer.
+
+### Stow
+
+- [Stow](https://www.gnu.org/software/stow/) - A symlink farm manager that makes managing dotfiles easy.
 
 ### Bat
 
@@ -8,32 +70,31 @@
 
 ### Zellij
 
-- [Zellij](https://zellij.dev/) - Zellij is a terminal workspace. It has the base functionality of a terminal multiplexer (similar to tmux or screen) but includes many built-in features that would allow users to extend it and create their own personalized environment.
+- [Zellij](https://zellij.dev/) - A terminal workspace and multiplexer.
 
 ### Btop
 
-- [Btop](https://github.com/aristocratos/btop) - Resource monitor that shows usage and stats for processor, memory, disks, network and processes.
+- [Btop](https://github.com/aristocratos/btop) - A resource monitor that displays stats for CPU, memory, disks, network, and processes.
 
 ### Dooit
 
-- [Dooit](https://dooit-org.github.io/dooit/) - A task manager that can be used in the terminal.
+- [Dooit](https://dooit-org.github.io/dooit/) - A task manager for the terminal.
 
 ### Copilot.vim
 
-- [Copilot.vim](https://github.com/github/copilot.vim) - Copilot.vim is a plugin that integrates GitHub Copilot into Vim.
-  G
+- [Copilot.vim](https://github.com/github/copilot.vim) - GitHub Copilot integration for Neovim.
 
 ### Hammerspoon
 
-- [Hammerspoon](https://www.hammerspoon.org/) - This is a tool for powerful automation of OS X. At its core, Hammerspoon is just a bridge between the operating system and a Lua scripting engine.
+- [Hammerspoon](https://www.hammerspoon.org/) - Automation for macOS using Lua scripting.
 
 ### Hushlogin
 
-- [Hushlogin](https://www.cyberciti.biz/howto/turn-off-the-login-banner-in-linux-unix-with-hushlogin-file/) - Turn off the login banner in Linux or Unix.
+- [Hushlogin](https://www.cyberciti.biz/howto/turn-off-the-login-banner-in-linux-unix-with-hushlogin-file/) - Suppress login banners in Unix/Linux.
 
 ### Lazygit
 
-- [Lazygit](https://github.com/jesseduffield/lazygit) - LazyGit is a terminal-based Git client that simplifies Git operations with an intuitive, keyboard-driven interface. It allows you to stage, commit, push, pull, and manage branches quickly without complex Git commands.
+- [Lazygit](https://github.com/jesseduffield/lazygit) - A terminal-based Git client with a keyboard-driven interface.
 
 ### LF
 
@@ -42,3 +103,21 @@
 ### Taskell
 
 - [Taskell](https://taskell.app/) - A command-line Kanban board/task manager.
+
+### Tmux
+
+- [Tmux](https://github.com/tmux/tmux) - A terminal multiplexer for managing multiple terminal sessions.
+
+### AstroVim
+
+- [AstroVim](https://astronvim.com/) - A customizable Neovim user interface.
+
+### LazyVim
+
+- [LazyVim](https://github.com/LazyVim/LazyVim) - A pre-configured Neovim setup optimized for developers.
+
+---
+
+```
+
+```

@@ -1,13 +1,26 @@
 #!/usr/bin/env bash
+
+# Script to display an image in Kitty terminal using `icat` or fallback to `pistol`.
+
+# Arguments:
+#   $1 - File path
+#   $2 - Width of the image
+#   $3 - Height of the image
+#   $4 - X position
+#   $5 - Y position
+
 file=$1
 w=$2
 h=$3
 x=$4
 y=$5
 
+# Check if the file is an image based on its MIME type
 if [[ "$(file -Lb --mime-type "$file")" =~ ^image ]]; then
-	kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "$file" </dev/null >/dev/tty
-	exit 1
+	# Display the image in Kitty using icat
+	kitty +kitten icat --silent --stdin=no --transfer-mode=file --place "${w}x${h}@${x}x${y}" "$file" </dev/null >/dev/tty
+	exit 0
 fi
 
+# Fallback to pistol for non-image files
 pistol "$file"

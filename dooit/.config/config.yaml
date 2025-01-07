@@ -1,48 +1,50 @@
-# rich colors: https://rich.readthedocs.io/en/stable/appendix/colors.html
-# nerd fonts: https://www.nerdfonts.com/
+# Rich Colors: https://rich.readthedocs.io/en/stable/appendix/colors.html
+# Nerd Fonts: https://www.nerdfonts.com/
 
 main:
-  # To show or not show top bars
+  # Toggle visibility of the top bars
   show_headers: false
 
-  # Colors for the border on menu and todo lists!
+  # Colors for menu and to-do list borders
   body_dim: dim white
   body_highlight: blue
 
-  # Colors for the headings
+  # Colors for header text
   header_dim: dim white
   header_highlight: blue
 
+  # Welcome message displayed on startup
   welcome_message: |+
-    Welcome to doit ! :wave:
+    Welcome to Doit! :wave:
 
+  # ASCII art displayed on startup
   ascii_art: |+
     ██████╗  ██████╗  ██████╗ ██╗████████╗
     ██╔══██╗██╔═══██╗██╔═══██╗██║╚══██╔══╝
-    ██║  ██║██║   ██║██║   ██║██║   ██║
-    ██║  ██║██║   ██║██║   ██║██║   ██║
-    ██████╔╝╚██████╔╝╚██████╔╝██║   ██║
-    ╚═════╝  ╚═════╝  ╚═════╝ ╚═╝   ╚═╝
+    ██║  ██║██║   ██║██║   ██║██║   ██║   
+    ██║  ██║██║   ██║██║   ██║██║   ██║   
+    ██████╔╝╚██████╔╝╚██████╔╝██║   ██║   
+    ╚═════╝  ╚═════╝  ╚═════╝ ╚═╝   ╚═╝   
 
 menu:
-  # Config for the side menu!
+  # Configuration for the side menu
   icons:
     nested_close: 
     nested_open: ﱮ
     single_topic: 
 
   theme:
-    style_editing: reverse red # style while editing the node
-    style_focused: reverse red # style on hover/highlight
-    style_unfocused: white # style for the others
+    style_editing: reverse red # Style when editing a menu item
+    style_focused: reverse red # Style for the highlighted item
+    style_unfocused: white # Style for non-highlighted items
 
 status_bar:
-  # Config for the status bar at bottom
+  # Configuration for the bottom status bar
   theme:
-    clock: reverse yellow
-    date: reverse green
+    clock: reverse yellow # Style for the clock
+    date: reverse green # Style for the date
 
-    # MODES
+    # Modes
     insert: cyan
     message: purple1
     normal: blue
@@ -62,16 +64,15 @@ todos:
     urgency: 
 
   theme:
-    style_editing: bold cyan
-    style_focused: bold grey85
-    style_unfocused: bold grey50
+    style_editing: bold cyan # Style for the item being edited
+    style_focused: bold grey85 # Style for the highlighted to-do item
+    style_unfocused: bold grey50 # Style for unhighlighted to-do items
 
 keybindings:
-  # Multiple keybindings goes in list like [g, home] and single with only the charater or combo
-  # eg: X, ctrl+X
-  # NOTE: for tab use 'ctrl+i' but shift-tab use "shift+tab" only
+  # Define keybindings for various actions
+  # Multiple keybindings are listed as [key1, key2], single as just the character or combo
+  # Note: Use 'ctrl+i' for Tab, but "shift+tab" for Shift-Tab
   # Reference: https://unix.stackexchange.com/questions/563469/conflict-ctrl-i-with-tab-in-normal-mode/563480#563480
-  # NOTE: Also, if changing something throws an error, maybe surround the keybind with ""
 
   move_to_top: [g, home]
   move_to_bottom: [G, end]
@@ -82,7 +83,7 @@ keybindings:
   edit_node: i
   edit_date: d
   toggle_complete: c
-  yank_todo: y # copy todo's about
+  yank_todo: y # Copy the to-do item details
   toggle_expand: z
   toggle_expand_parent: Z
   remove_node: x

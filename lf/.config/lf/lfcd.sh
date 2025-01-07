@@ -1,30 +1,38 @@
-# Change working dir in shell to last dir in lf on exit (adapted from ranger).
+#!/usr/bin/env bash
+
+# Change working directory in the shell to the last directory visited in lf on exit.
 #
-# You need to either copy the content of this file to your shell rc file
-# (e.g. ~/.bashrc) or source this file directly:
+# To use this script, either copy its contents into your shell configuration file
+# (e.g., ~/.bashrc, ~/.zshrc) or source it directly:
 #
 #     LFCD="/path/to/lfcd.sh"
 #     if [ -f "$LFCD" ]; then
 #         source "$LFCD"
 #     fi
 #
-# You may also like to assign a key (Ctrl-O) to this command:
+# You can also bind a key (e.g., Ctrl-O) to this command:
 #
 #     bind '"\C-o":"lfcd\C-m"'  # bash
 #     bindkey -s '^o' 'lfcd\n'  # zsh
 #
 
 lfcd() {
-	tmp="$(mktemp)"
-	# `command` is needed in case `lfcd` is aliased to `lf`
-	command lf -last-dir-path="$tmp" "$@"
-	if [ -f "$tmp" ]; then
-		dir="$(cat "$tmp")"
-		rm -f "$tmp"
-		if [ -d "$dir" ]; then
-			if [ "$dir" != "$(pwd)" ]; then
-				cd "$dir"
-			fi
+	local tmp dir
+
+	# Create a temporary file to store the last directory path from lf
+	tmp="$(mktemp -t lfcd.XXXXXX)"
+
+	# Use `command` to call lf in case `lfcd` is aliased to `lf`
+	command lf --last-dir-path="$tmp" "$@"
+
+	# If the temporary file exists, read the directory path from it
+	if [[ -f "$tmp" ]]; then
+		dir="$(<"$tmp")"
+		rm -f "$tmp" # Remove the temporary file
+
+		# Check if the directory is valid and different from the current working directory
+		if [[ -d "$dir" && "$dir" != "$(pwd)" ]]; then
+			cd "$dir" || return
 		fi
 	fi
 }

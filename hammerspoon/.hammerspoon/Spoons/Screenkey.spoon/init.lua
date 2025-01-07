@@ -1,53 +1,52 @@
---- Spoons/Screenkey.spoon/init.lua
-
 --- === Screenkey ===
-
--- stylua: ignore start
-local events = hs.eventtap.event.types
-local canvas = hs.canvas
-local screen = hs.screen
-local eventtap = hs.eventtap
-local mouse = hs.mouse
-local keycodes = hs.keycodes
-local timer = hs.timer
--- stylua: ignore end
+--- A Spoon for displaying key presses on-screen.
+--- Author: Huy Nguyen <huyn.nguyen95@gmail.com>
+--- Homepage: https://github.com/Hammerspoon/Spoons
+--- License: MIT
 
 local obj = {}
 
+-- Metadata
 obj.name = "Screenkey"
 obj.version = "1.0"
 obj.author = "Huy Nguyen <huyn.nguyen95@gmail.com>"
 obj.homepage = "https://github.com/Hammerspoon/Spoons"
 obj.license = "MIT - https://opensource.org/licenses/MIT"
 
-local logger = hs.logger.new("Screenkey")
-obj.logger = logger
+-- Required Hammerspoon modules
+local hs_eventtap = hs.eventtap
+local hs_screen = hs.screen
+local hs_canvas = hs.canvas
+local hs_timer = hs.timer
+local hs_mouse = hs.mouse
+local hs_keycodes = hs.keycodes
+local hs_logger = hs.logger.new("Screenkey")
+obj.logger = hs_logger
 
-obj._attribs = {
+-- Default configuration
+obj.config = {
 	format = "%H:%M",
 	textFont = "JetBrains Mono",
 	textColor = { hex = "#e7e5da" },
-	-- lualine bar
 	textSize = 36,
 	width = 250,
 	height = 50,
-	-- big video
-	-- textSize = 60,
-	-- width = 450,
-	-- height = 90,
 	hotkey = "escape",
 	hotkeyMods = { "cmd", "alt", "ctrl" },
 }
-for k, v in pairs(obj._attribs) do
+
+for k, v in pairs(obj.config) do
 	obj[k] = v
 end
 
--- this is a hello
+-- Initialization
 function obj:init()
 	if not self.canvas then
-		self.canvas = canvas.new({ x = 0, y = 0, w = 0, h = 0 })
+		self.canvas = hs_canvas.new({ x = 0, y = 0, w = 0, h = 0 })
 	end
-	self.canvas[1] = { type = "rectangle", id = "part1", fillColor = { hex = "#000" } }
+
+	-- Canvas setup
+	self.canvas[1] = { type = "rectangle", id = "background", fillColor = { hex = "#000" } }
 	self.canvas[2] = {
 		type = "text",
 		text = "",
@@ -58,25 +57,28 @@ function obj:init()
 		textAlignment = "right",
 		frame = { x = "0%", y = "0%", h = "90%", w = "95%" },
 	}
-	local mainScreen = screen.primaryScreen()
-	local mainRes = mainScreen:fullFrame()
+
+	-- Center the canvas on the primary screen
+	local mainScreen = hs_screen.primaryScreen()
+	local mainFrame = mainScreen:fullFrame()
 	self.canvas:frame({
-		x = (mainRes.w - self.width) / 2,
-		y = (mainRes.h - self.height) / 2,
+		x = (mainFrame.w - self.width) / 2,
+		y = (mainFrame.h - self.height) / 2,
 		w = self.width,
 		h = self.height,
 	})
 
+	-- Drag-and-drop functionality
 	self.canvas:canvasMouseEvents(true, true)
 	self.canvas:mouseCallback(function(_, event, _, x, y)
 		if event == "mouseDown" then
-			self.mouseMoveTracker = eventtap
-				.new({ events.leftMouseDragged, events.leftMouseUp }, function(e)
-					if e:getType() == events.leftMouseUp then
+			self.mouseMoveTracker = hs_eventtap
+				.new({ hs_eventtap.event.types.leftMouseDragged, hs_eventtap.event.types.leftMouseUp }, function(e)
+					if e:getType() == hs_eventtap.event.types.leftMouseUp then
 						self.mouseMoveTracker:stop()
 						self.mouseMoveTracker = nil
 					else
-						local mousePosition = mouse.getAbsolutePosition()
+						local mousePosition = hs_mouse.getAbsolutePosition()
 						self.canvas:frame({
 							x = mousePosition.x - x,
 							y = mousePosition.y - y,
@@ -84,126 +86,111 @@ function obj:init()
 							h = self.height,
 						})
 					end
-				end, false)
+				end)
 				:start()
 		end
 	end)
 
+	-- Key capture setup
 	self.keys = {}
 	self.keyCount = {}
-	self.uniqueIndex = 1
-	self.capture = eventtap.new({
-		eventtap.event.types.keyDown,
-	}, function(event)
+	self.capture = hs_eventtap.new({ hs_eventtap.event.types.keyDown }, function(event)
 		local flags = event:getFlags()
-		local character = keycodes.map[event:getKeyCode()]
-		local combo = (flags.ctrl and "⌃" or "")
+		local character = hs_keycodes.map[event:getKeyCode()]
+		local keyCombination = (flags.ctrl and "⌃" or "")
 			.. (flags.alt and "⌥" or "")
-			-- .. (flags.shift and "⇧" or "")
 			.. (flags.cmd and "⌘" or "")
-			.. string.gsub(({
-				["return"] = "⏎",
-				["delete"] = "⌫",
-				["escape"] = "⎋",
-				["space"] = "␣",
-				["tab"] = "⇥",
-				["up"] = "↑",
-				["down"] = "↓",
-				["left"] = "←",
-				["right"] = "→",
-				["F19"] = "",
-			})[character] or character, "^%l", function(x)
-				if flags.shift then
-					return string.upper(x)
-				end
-				return x
-			end)
+			.. (
+				({
+					["return"] = "⏎",
+					["delete"] = "⌫",
+					["escape"] = "⎋",
+					["space"] = "␣",
+					["tab"] = "⇥",
+					["up"] = "↑",
+					["down"] = "↓",
+					["left"] = "←",
+					["right"] = "→",
+				})[character]
+				or character
+				or ""
+			)
 
-		if self.resetTimer ~= nil then
+		if self.resetTimer then
 			self.resetTimer:stop()
 		end
-		self.resetTimer = timer.doAfter(5, function()
+		self.resetTimer = hs_timer.doAfter(5, function()
 			self.keys = {}
 			self.keyCount = {}
-			self:update_display()
+			self:updateDisplay()
 		end)
 
-		if self:getLastKey() == combo then
-			self.keyCount[combo .. #self.keys] = self.keyCount[combo .. #self.keys] + 1
+		if self:getLastKey() == keyCombination then
+			self.keyCount[keyCombination .. #self.keys] = self.keyCount[keyCombination .. #self.keys] + 1
 		else
-			table.insert(self.keys, combo)
-			self.keyCount[combo .. #self.keys] = 1
+			table.insert(self.keys, keyCombination)
+			self.keyCount[keyCombination .. #self.keys] = 1
 		end
 
-		self:update_display()
+		self:updateDisplay()
 	end)
-
-	self._init_done = true
 
 	return self
 end
 
-function obj:update_display()
-	local display = ""
-	for index, key in pairs(self.keys) do
+-- Update the display
+function obj:updateDisplay()
+	local displayText = ""
+	for index, key in ipairs(self.keys) do
 		if self.keyCount[key .. index] > 1 then
-			display = display .. key .. "×" .. self.keyCount[key .. index]
+			displayText = displayText .. key .. "×" .. self.keyCount[key .. index]
 		else
-			display = display .. key
+			displayText = displayText .. key
 		end
 	end
-	self.canvas[2].text = display
+	self.canvas[2].text = displayText
 end
 
-function obj:isShowing()
-	return self.canvas:isShowing()
-end
-
+-- Show the canvas
 function obj:show()
 	if not self.capture then
 		self:init()
 	end
 	self.capture:start()
-
 	self.canvas:show()
+
 	if self.hotkey then
-		self.cancel_hotkey = hs.hotkey.bind(self.hotkeyMods, self.hotkey, function()
+		self.cancelHotkey = hs.hotkey.bind(self.hotkeyMods, self.hotkey, function()
 			self:hide()
 		end)
 	end
+
 	return self
 end
 
+-- Hide the canvas
 function obj:hide()
 	if self.capture then
 		self.capture:stop()
 	end
-	self.capture = nil
-	if self.cancel_hotkey then
-		self.cancel_hotkey:delete()
+	if self.cancelHotkey then
+		self.cancelHotkey:delete()
 	end
 	self.canvas:hide()
 end
 
-function obj:toggleShow()
-	if self:isShowing() then
+-- Toggle visibility
+function obj:toggle()
+	if self.canvas:isShowing() then
 		self:hide()
 	else
 		self:show()
 	end
 end
 
-function obj:getKeys()
-	local keys = {}
-	for _, key in pairs(self.keys) do
-		table.insert(keys, key)
-	end
-	return keys
-end
-
+-- Get the last key pressed
 function obj:getLastKey()
-	local lastKeys = self:getKeys()
-	return lastKeys[#lastKeys]
+	return self.keys[#self.keys]
 end
 
 return obj
