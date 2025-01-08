@@ -101,7 +101,7 @@ chmod +x osx.sh install.sh
 
 - [LF](https://github.com/gokcehan/lf) - A terminal file manager.
 
-## Rectangle
+### Rectangle
 
 - [Rectangle](https://rectangleapp.com/) - A window manager for macOS.
 
