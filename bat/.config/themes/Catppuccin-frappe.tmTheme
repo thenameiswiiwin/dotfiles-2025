@@ -6,6 +6,7 @@
     <string>Catppuccin</string>
     <key>settings</key>
     <array>
+      <!-- General theme settings -->
       <dict>
         <key>settings</key>
         <dict>
@@ -39,6 +40,8 @@
           <string>#949cbb</string>
         </dict>
       </dict>
+
+      <!-- Comment settings -->
       <dict>
         <key>name</key>
         <string>Comment</string>
@@ -52,6 +55,8 @@
           <string>italic</string>
         </dict>
       </dict>
+
+      <!-- String settings -->
       <dict>
         <key>name</key>
         <string>String</string>
@@ -61,11 +66,10 @@
         <dict>
           <key>foreground</key>
           <string>#a6d189</string>
-          <key>fontStyle</key>
-          <string></string>
         </dict>
       </dict>
-      <!-- Additional color and syntax settings follow the same structure as above -->
+
+      <!-- Keyword settings -->
       <dict>
         <key>name</key>
         <string>Keyword</string>
@@ -79,7 +83,8 @@
           <string>italic</string>
         </dict>
       </dict>
-      <!-- Truncated for brevity -->
+      <!-- Additional color and syntax settings follow the same structure as above -->
+
     </array>
     <key>uuid</key>
     <string>4d0379b5-ef82-467b-b8b8-365889420646</string>

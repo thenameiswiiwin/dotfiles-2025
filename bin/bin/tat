@@ -1,43 +1,56 @@
 #!/bin/sh
 #
-# Attach or create tmux session named the same as current directory.
+# Attach or create a tmux session named the same as the current directory or use a provided name.
 
 path_name="$(basename "$PWD" | tr . -)"
-session_name=${1-$path_name}
+session_name="${1:-$path_name}" # Use the provided name or fallback to the current directory name.
 
+# Check if we are not already inside a tmux session.
 not_in_tmux() {
 	[ -z "$TMUX" ]
 }
 
+# Check if a session with the given name exists.
 session_exists() {
-	tmux has-session -t "=$session_name"
+	tmux has-session -t "$session_name" 2>/dev/null
 }
 
+# Create a detached tmux session.
 create_detached_session() {
 	(TMUX='' tmux new-session -Ad -s "$session_name")
 }
 
+# Create a tmux session if needed and set up windows with commands.
 create_if_needed_and_attach() {
 	if not_in_tmux; then
+		# Create a new tmux session if not inside tmux.
 		tmux new-session -Ad -s "$session_name"
 
+		# Rename the first window to 'editor' and start 'vim'.
 		tmux rename-window -t "$session_name:1" "editor"
-		tmux send-keys -t "editor" "vim" C-m
+		tmux send-keys -t "$session_name:1" "vim" C-m
+
+		# Split the window horizontally, show directory tree with 'exa'.
 		tmux splitw -h -p 35
-		tmux send-keys -t "editor" "exa --tree -a -I=.git --git-ignore" C-m
+		tmux send-keys -t "$session_name:1" "exa --tree -a -I=.git --git-ignore" C-m
 		tmux selectp -t 1
 
+		# Create a 'server' window and start 'btop'.
 		tmux new-window -t "$session_name:2" -n "server"
-		tmux send-keys -t "server" "btop" C-m
+		tmux send-keys -t "$session_name:2" "btop" C-m
 
+		# Create a 'git' window and start 'lazygit'.
 		tmux new-window -t "$session_name:3" -n "git"
-		tmux send-keys -t "git" "lazygit" C-m
+		tmux send-keys -t "$session_name:3" "lazygit" C-m
 
+		# Create a 'scratch' window and start 'archey'.
 		tmux new-window -t "$session_name:4" -n "scratch"
-		tmux send-keys -t "scratch" "archey" C-m
+		tmux send-keys -t "$session_name:4" "archey" C-m
 
+		# Attach to the 'editor' window of the session.
 		tmux attach-session -t "$session_name:1"
 	else
+		# If already in tmux, check if the session exists and switch to it.
 		if ! session_exists; then
 			create_detached_session
 		fi

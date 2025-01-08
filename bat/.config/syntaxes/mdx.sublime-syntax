@@ -8,12 +8,12 @@ file_extensions:
   - mdx
 scope: text.html.markdown
 comment: |
-  Aims to meet CommonMark specifications (http://spec.commonmark.org/),
-  with GitHub Flavored Markdown (https://github.github.com/gfm/).
-  Includes extras like Markdown Extra's footnotes (https://michelf.ca/projects/php-markdown/extra/#footnotes).
+  This syntax definition aims to meet CommonMark specifications (http://spec.commonmark.org/),
+  with support for GitHub Flavored Markdown (https://github.github.com/gfm/).
+  It includes extras like footnotes (from Markdown Extra: https://michelf.ca/projects/php-markdown/extra/#footnotes).
 
 variables:
-  # Thematic breaks as per CommonMark specs.
+  # Thematic breaks according to CommonMark specs.
   thematic_break: |
     (?x:
       [ ]{,3}                          # Up to 3 spaces
@@ -22,10 +22,12 @@ variables:
         | [*](?:[ ]{,2}[*]){2,}        # At least 3 asterisks
         | [_](?:[ ]{,2}[_]){2,}        # At least 3 underscores
       )
-      [ \t]*$                          # Any spaces or tabs to end the line
+      [ \t]*$                          # Any spaces or tabs at the end
     )
+
   # Escape sequence for valid Markdown escape characters.
   escape: '\\[-`*_#+.!(){}\[\]\\>|~]'
+
   # Balanced inline code using backticks.
   backticks: |
     (?x:

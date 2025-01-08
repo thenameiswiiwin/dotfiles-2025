@@ -19,7 +19,7 @@
 #define TAPPING_TERM 240
 #define RETRO_TAPPING
 
-// Mouse key settings
+// Mouse key settings for improved responsiveness
 #undef MOUSEKEY_DELAY
 #define MOUSEKEY_DELAY 5
 #undef MOUSEKEY_INTERVAL
@@ -34,7 +34,7 @@
 #define MOUSEKEY_MAX_SPEED 22
 #define USB_SUSPEND_WAKEUP_DELAY 0
 
-// Mouse key wheel settings
+// Mouse key wheel settings for smooth scroll
 #undef MOUSEKEY_WHEEL_INTERVAL
 #define MOUSEKEY_WHEEL_INTERVAL 83
 #undef MOUSEKEY_WHEEL_MAX_SPEED

@@ -3,7 +3,7 @@
 # Credit: ThePrimeagen
 # Original Source: https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-sessionizer
 
-# Check if a directory is passed as an argument, otherwise use fzf to select
+# Check if a directory is passed as an argument, otherwise use fzf to select one
 if [[ $# -eq 1 ]]; then
 	selected=$1
 else

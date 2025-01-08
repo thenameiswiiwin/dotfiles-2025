@@ -1,24 +1,15 @@
 #!/usr/bin/env bash
 
-# Script to display an image using `viu`.
-
 # Usage:
 #   ./lf_wezterm_clean <image-file>
 
-# Check if an argument is provided (path to an image file)
-if [[ -z "$1" ]]; then
-	echo "Usage: lf_wezterm_clean <image-file>"
-	exit 1
-fi
-
-# Path to the image file
 image_file="$1"
 
-# Check if the provided file exists and is a regular file
-if [[ ! -f "$image_file" ]]; then
-	echo "Error: File not found or not a regular file: $image_file"
+# Check for valid input
+if [[ -z "$image_file" || ! -f "$image_file" ]]; then
+	echo "Error: Provide a valid image file."
 	exit 1
 fi
 
-# Display the image using viu
+# Display the image using `viu`
 viu --quiet "$image_file"

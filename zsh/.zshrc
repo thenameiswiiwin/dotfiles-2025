@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+###############################################################################
+# Zap Configuration                                                           #
+###############################################################################
+
 # Load Zap configuration if it exists
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
@@ -12,10 +16,11 @@ plug "zap-zsh/exa"
 plug "zap-zsh/vim"
 plug "wintermi/zsh-fnm"
 
-# Aliases
-alias dockerps="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
+###############################################################################
+# Functions                                                                   #
+###############################################################################
 
-# Function to run npm scripts using fzf for selection
+# Run npm scripts interactively using fzf
 function runr() { 
   jq -r '.scripts | keys[]' package.json |
     fzf \
@@ -27,9 +32,6 @@ function runr() {
       --layout="reverse" | \
     xargs -o npm run
 }
-
-# Source custom aliases
-source ~/.aliases
 
 # jqf: Interactive jq playground with fzf
 function jqf() {
@@ -58,7 +60,7 @@ function ghgist() {
   GH_FORCE_TTY=100% gh gist list --limit 20 | fzf --ansi --preview 'GH_FORCE_TTY=100% gh gist view {1}' --preview-window down | awk '{print $1}' | xargs gh gist edit
 }
 
-# Function to select and open a specific Neovim configuration
+# Select and open a specific Neovim configuration
 function nvims() {
   items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
   config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
@@ -70,9 +72,13 @@ function nvims() {
   fi
   NVIM_APPNAME=$config nvim $@
 }
+
 bindkey -s "^b" "nvims\n"
 
-# Developer tools alias
+###############################################################################
+# Developer Tools                                                             #
+###############################################################################
+
 local dev_commands=(
   'tz' 'task' 'watson' 'archey' 'ncdu'
   'fkill' 'lazydocker' 'ntl' 'ranger'
@@ -86,10 +92,18 @@ alias dev='printf "%s\n" "${dev_commands[@]}" | fzf --height 20% --header Comman
 
 # Bind tmux sessionizer to a hotkey
 bindkey -s "^f" "tmux-sessionizer\n"
-# bindkey -s ^f "zellij-switch\n"  # Uncomment to use with Zellij
+# Uncomment the next line to use Zellij instead of tmux
+# bindkey -s "^f" "zellij-switch\n"
+
+###############################################################################
+# Initialization and Tools                                                   #
+###############################################################################
 
 # Source fzf if it exists
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Source custom aliases
+[ -f ~/.aliases ] && source ~/.aliases
 
 # Source private zshrc if it exists
 [ -r ~/private/.zshrc ] && source ~/private/.zshrc
@@ -98,14 +112,20 @@ bindkey -s "^f" "tmux-sessionizer\n"
 autoload -Uz compinit
 compinit
 
-# Uncomment for GitHub Copilot CLI if needed
+# GitHub Copilot CLI (optional)
 eval "$(github-copilot-cli alias -- "$0")"
+
+# Initialize Atuin
 eval "$(atuin init zsh)"
 
-# Initialize environment variables and tools
-eval "$(/usr/local/bin/brew shellenv)"  # For Homebrew
-eval "$(fnm env --use-on-cd --log-level=quiet)"  # For fnm (Node.js version manager)
-eval "$(zoxide init zsh)"  # For zoxide (faster navigation)
+# Initialize Homebrew
+eval "$(/usr/local/bin/brew shellenv)"
 
+# Initialize fnm (Node.js version manager)
+eval "$(fnm env --use-on-cd --log-level=quiet)"
 
+# Initialize zoxide (faster directory navigation)
+eval "$(zoxide init zsh)"
+
+# Source Atuin environment
 . "$HOME/.atuin/bin/env"

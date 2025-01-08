@@ -1,19 +1,28 @@
 theme:
-  lightTheme: false
-  activeBorderColor:
+  # General Theme Settings
+  lightTheme: false # Set to true for light mode, false for dark mode
+
+  # Border Colors
+  activeBorderColor: # Border color for active elements
     - "#a6d189" # Green
-    - bold
-  inactiveBorderColor:
-    - "#c6d0f5" # Text
-  optionsTextColor:
+    - bold # Bold text style
+  inactiveBorderColor: # Border color for inactive elements
+    - "#c6d0f5" # Text (light blue)
+
+  # Text and Background Colors
+  optionsTextColor: # Text color for options
     - "#8caaee" # Blue
-  selectedLineBgColor:
-    - "#414559" # Surface0
-  selectedRangeBgColor:
-    - "#414559" # Surface0
-  cherryPickedCommitBgColor:
+  selectedLineBgColor: # Background color for selected lines
+    - "#414559" # Surface0 (dark gray)
+  selectedRangeBgColor: # Background color for selected ranges
+    - "#414559" # Surface0 (dark gray)
+
+  # Cherry-Picked Commit Colors
+  cherryPickedCommitBgColor: # Background color for cherry-picked commits
     - "#81c8be" # Teal
-  cherryPickedCommitFgColor:
+  cherryPickedCommitFgColor: # Foreground (text) color for cherry-picked commits
     - "#8caaee" # Blue
-  unstagedChangesColor:
+
+  # Unstaged Changes Color
+  unstagedChangesColor: # Color for unstaged changes
     - "#ef4444" # Red

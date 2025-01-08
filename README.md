@@ -22,32 +22,7 @@ tree -a -I '.git|.DS_Store'
 
 ### Install Packages
 
-```bash
-brew bundle
-```
-
-### Symlink dotfiles
-
-```bash
-stow aliases rectangle github-copilot hushlogin stow bin kitty lazygit nvim tmux wezterm zsh zellij bat lf pistol
-```
-
-## Scripts
-
-- **osx.sh**: Configures macOS-specific settings to optimize your development environment.
-- **install.sh**: Automates the installation of essential tools and configurations. Run this to set up your environment quickly.
-
-### Run Scripts
-
-```bash
-chmod +x osx.sh install.sh
-./install.sh
-./osx.sh
-```
-
-## Features
-
-### Neovim
+## Neovim
 
 - [Neovim](https://neovim.io/) - A modern, extensible Vim-based text editor.
 - **LazyVim** - A pre-configured Neovim setup that optimizes for productivity.

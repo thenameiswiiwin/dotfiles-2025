@@ -25,7 +25,7 @@ function print-decimal-unicode-range() {
 	local originalSequenceLength=${#originalSequence[@]}
 	local leftoverSpaces=$((wrapAt - (originalSequenceLength % wrapAt)))
 
-	# Add fillers to array to maintain table
+	# Add fillers to array to maintain table structure
 	if [[ "$leftoverSpaces" -lt "$wrapAt" ]]; then
 		for _ in $(seq 1 "$leftoverSpaces"); do
 			originalSequence+=(0)
@@ -36,13 +36,14 @@ function print-decimal-unicode-range() {
 
 	printf "%b\\n" "$topLine"
 
+	# Iterate over each decimal code in the sequence
 	for decimalCode in "${originalSequence[@]}"; do
 		local hexCode
 		hexCode=$(printf '%x' "$decimalCode")
 		local code="${hexCode}"
 		local char="\\u${hexCode}"
 
-		# Fill in placeholder cells properly formatted
+		# Handle placeholder cells (empty or zero unicode)
 		if [ "$char" = "\\u0" ]; then
 			char=" "
 			code="    "
@@ -61,6 +62,7 @@ function print-decimal-unicode-range() {
 				currentColorChar="$alternateBgColorChar"
 			fi
 
+			# Print codes and characters in a structured table format
 			printf "%b%b%b" "$bar" "$allCodes" "$reset_color"
 			printf "\\n"
 			printf "%b%b%b" "$bar" "$allChars" "$reset_color"
@@ -86,15 +88,18 @@ function print-unicode-ranges() {
 	local len=$#
 	local combinedRanges=()
 
+	# Loop through hexadecimal ranges and convert them to decimal
 	for ((j = 0; j < len; j += 2)); do
 		local start="${arr[$j]}"
 		local end="${arr[$((j + 1))]}"
 		local startDecimal=$((16#$start))
 		local endDecimal=$((16#$end))
 
+		# Generate the range of codepoints
 		mapfile -t combinedRanges < <(seq "$startDecimal" "$endDecimal")
 	done
 
+	# Print the decimal unicode range
 	print-decimal-unicode-range "${combinedRanges[@]}"
 }
 

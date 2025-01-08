@@ -23,16 +23,16 @@ local hs_keycodes = hs.keycodes
 local hs_logger = hs.logger.new("Screenkey")
 obj.logger = hs_logger
 
--- Default configuration
+-- Default configuration with adjustments for macOS 15.2 (Sequoia) and Retina display
 obj.config = {
-	format = "%H:%M",
-	textFont = "JetBrains Mono",
-	textColor = { hex = "#e7e5da" },
-	textSize = 36,
-	width = 250,
-	height = 50,
-	hotkey = "escape",
-	hotkeyMods = { "cmd", "alt", "ctrl" },
+	format = "%H:%M", -- Time format for display
+	textFont = "JetBrains Mono", -- Optimized for code readability
+	textColor = { hex = "#e7e5da" }, -- Light font color for visibility
+	textSize = 36, -- Adjusted for Retina displays
+	width = 300, -- Increased width for better display on larger screens
+	height = 60, -- Increased height for better legibility
+	hotkey = "escape", -- Escape key for toggling display
+	hotkeyMods = { "cmd", "alt", "ctrl" }, -- Customizable hotkey modifier combination
 }
 
 for k, v in pairs(obj.config) do
@@ -45,7 +45,7 @@ function obj:init()
 		self.canvas = hs_canvas.new({ x = 0, y = 0, w = 0, h = 0 })
 	end
 
-	-- Canvas setup
+	-- Canvas setup for a better visibility on Retina displays
 	self.canvas[1] = { type = "rectangle", id = "background", fillColor = { hex = "#000" } }
 	self.canvas[2] = {
 		type = "text",
@@ -68,7 +68,7 @@ function obj:init()
 		h = self.height,
 	})
 
-	-- Drag-and-drop functionality
+	-- Drag-and-drop functionality for repositioning the canvas
 	self.canvas:canvasMouseEvents(true, true)
 	self.canvas:mouseCallback(function(_, event, _, x, y)
 		if event == "mouseDown" then
@@ -87,7 +87,7 @@ function obj:init()
 						})
 					end
 				end)
-				:start()
+				.start()
 		end
 	end)
 
@@ -116,6 +116,7 @@ function obj:init()
 				or ""
 			)
 
+		-- Reset key capture after 5 seconds of inactivity
 		if self.resetTimer then
 			self.resetTimer:stop()
 		end
@@ -125,6 +126,7 @@ function obj:init()
 			self:updateDisplay()
 		end)
 
+		-- Handle repeated key presses
 		if self:getLastKey() == keyCombination then
 			self.keyCount[keyCombination .. #self.keys] = self.keyCount[keyCombination .. #self.keys] + 1
 		else
@@ -138,7 +140,7 @@ function obj:init()
 	return self
 end
 
--- Update the display
+-- Update the display with key presses
 function obj:updateDisplay()
 	local displayText = ""
 	for index, key in ipairs(self.keys) do

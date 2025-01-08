@@ -3,6 +3,7 @@
 # Credit to ThePrimeagen: https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-sessionizer
 # Updated and optimized
 
+# Check if a directory is passed as an argument, otherwise use fzf to select a directory interactively
 if [[ $# -eq 1 ]]; then
 	selected=$1
 else
@@ -16,33 +17,42 @@ if [[ -z $selected ]]; then
 fi
 
 # Generate session name by replacing dots with underscores
-selected_name=$(basename "$selected" | tr . _)
+selected_name=$(basename "$selected" | tr '.' '_')
 
-# Check if Zellij or Tmux is running
+# Check if Zellij is running
 zellij_running=$(pgrep zellij)
-in_zellij=$(echo $TMUX)
+
+# Check if inside tmux session
+in_tmux=${TMUX:-}
 
 # Handle Zellij session creation and attachment
 if [[ -n $zellij_running ]]; then
 	if ! zellij list-sessions | grep -q "^$selected_name$"; then
+		# Create new Zellij session if it doesn't exist
 		zellij attach --create "$selected_name" --layout "$selected"
 	else
+		# Attach to the existing Zellij session
 		zellij attach "$selected_name"
 	fi
 	exit 0
 fi
 
 # Handle Tmux session creation and attachment
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+tmux_running=$(pgrep tmux)
+
+if [[ -z $in_tmux ]] && [[ -z $tmux_running ]]; then
+	# If not in tmux and no tmux session is running, create a new tmux session
 	tmux new-session -s "$selected_name" -c "$selected"
 	exit 0
 fi
 
 if ! tmux has-session -t "$selected_name" 2>/dev/null; then
+	# Create new tmux session if it doesn't exist
 	tmux new-session -ds "$selected_name" -c "$selected"
 fi
 
-if [[ -z $TMUX ]]; then
+# Attach to tmux session if not already inside tmux
+if [[ -z $in_tmux ]]; then
 	tmux attach-session -t "$selected_name"
 else
 	tmux switch-client -t "$selected_name"

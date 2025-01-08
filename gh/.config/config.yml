@@ -1,16 +1,16 @@
 # Protocol to use for git operations. Supported values: ssh, https
-git_protocol: https
+git_protocol: https # Use HTTPS for git operations (default: https)
 
 # Editor to use when creating issues, pull requests, etc. Leave blank to use the default editor from the environment.
-editor:
+editor: "" # Leave empty to use the default system editor
 
 # When to display interactive prompts. This is a global configuration and cannot be overridden by hostname.
 # Supported values: enabled, disabled
-prompt: enabled
+prompt: enabled # Enable interactive prompts (default: enabled)
 
 # Pager program to use for command output. Example value: less
-pager:
+pager: "" # Leave empty to use the default pager program (typically less)
 
 # Aliases to define shortcuts for `gh` commands
 aliases:
-  co: pr checkout
+  co: pr checkout # Define 'co' as an alias for 'pr checkout' command

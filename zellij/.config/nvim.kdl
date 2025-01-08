@@ -1,11 +1,16 @@
 layout {
+    # Define the top pane with a tab bar
     pane size=1 borderless=true {
-        plugin location="zellij:tab-bar"
+        plugin location="zellij:tab-bar"  # Displays the tab bar
     }
+    
+    # Main workspace pane
     pane
+    
+    # Define the bottom pane with a status bar
     pane size=2 borderless=true {
         plugin location="zellij:status-bar" {
-            supermode true
+            supermode true  # Enable supermode for additional functionality
         }
     }
 }

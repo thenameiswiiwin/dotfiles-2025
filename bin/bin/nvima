@@ -9,7 +9,7 @@ declare -A items=(
 	[AstroNvim]=" AstroNvim"
 )
 
-# Display all keys and values
+# Display all keys and values (for debugging)
 printf "Keys:\n"
 printf "%s\n" "${!items[@]}"
 

@@ -1,33 +1,27 @@
 #!/usr/bin/env bash
 
-# Ensure the script is provided with necessary arguments
-if [[ $# -lt 1 ]]; then
-	echo "Usage: $0 <file> [width] [height] [x] [y]"
-	exit 1
-fi
+# Usage:
+#   ./script <file> [width] [height] [x] [y]
 
 file="$1"
-w="${2:-0}" # Default width to 0 if not provided
-h="${3:-0}" # Default height to 0 if not provided
-x="${4:-0}" # Default x position to 0 if not provided
-y="${5:-0}" # Default y position to 0 if not provided
+w="${2:-0}"
+h="${3:-0}"
+x="${4:-0}"
+y="${5:-0}"
 
-# Check if the file is an image
+# Determine file type
 if [[ "$(file -Lb --mime-type "$file")" =~ ^image ]]; then
-	# Check if viu is installed
 	if command -v viu &>/dev/null; then
-		# Use viu to preview the image
 		viu --width "$w" --height "$h" --quiet "$file"
 	else
-		echo "Error: 'viu' is not installed. Please install it to preview images."
+		echo "Error: 'viu' is not installed."
 		exit 1
 	fi
 else
-	# Fall back to pistol for other file types
 	if command -v pistol &>/dev/null; then
 		pistol "$file"
 	else
-		echo "Error: 'pistol' is not installed. Please install it to preview non-image files."
+		echo "Error: 'pistol' is not installed."
 		exit 1
 	fi
 fi

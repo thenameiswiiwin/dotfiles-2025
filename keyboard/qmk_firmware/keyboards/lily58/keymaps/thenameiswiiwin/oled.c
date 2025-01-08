@@ -22,10 +22,6 @@ void oled_task_user(void) {
     oled_write_ln(read_layer_state(), false);
     oled_write_ln(read_keylog(), false);
     oled_write_ln(read_keylogs(), false);
-    // Optionally, additional information can be displayed, like mode icons and LED state
-    // oled_write_ln(read_mode_icon(keymap_config.swap_lalt_lgui), false);
-    // oled_write_ln(read_host_led_state(), false);
-    // oled_write_ln(read_timelog(), false);
   } else {
     // Display logo when not the master keyboard
     oled_write(read_logo(), false);
@@ -39,8 +35,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Log keypress to OLED
     set_keylog(keycode, record);
 #endif
-    // Optional: Add any custom logging or actions during key press
-    // set_timelog();
   }
   return true;
 }

@@ -1,26 +1,30 @@
 # vim:ft=conf
+# Dircolors configuration file with Nerd Fonts icons
+# Requires Nerd Fonts: https://www.nerdfonts.com
 
-# These examples require Nerd Fonts or a compatible font.
-# Visit https://www.nerdfonts.com for more details.
-
-# File type indicators (lf defaults with Nerd Font icons):
+###############################################################################
+# File Type Indicators
+###############################################################################
 ln             # Symbolic Link
-or             # Orphan
+or             # Orphaned Link
 tw             # Sticky Other Writable
 ow             # Other Writable
-st             # Sticky
+st             # Sticky Directory
 di             # Directory
-pi             # FIFO
+pi             # FIFO (Named Pipe)
 so             # Socket
 bd             # Block Device
 cd             # Character Device
-su             # SetUID
-sg             # SetGID
-ex             # Executable
+su             # SetUID Executable
+sg             # SetGID Executable
+ex             # Executable File
 fi             # Regular File
 
-# Common file extensions (mapped with vim-devicons or Nerd Font icons):
-# Web Development:
+###############################################################################
+# File Extensions
+###############################################################################
+
+# Web Development
 *.html                 # HTML
 *.css                  # CSS
 *.scss                 # SCSS
@@ -31,7 +35,7 @@ fi             # Regular File
 *.json                 # JSON
 *.xml           謹       # XML
 
-# Scripting:
+# Scripting Languages
 *.sh                   # Shell Script
 *.zsh                  # ZSH Script
 *.bash                 # Bash Script
@@ -40,13 +44,13 @@ fi             # Regular File
 *.php                  # PHP Script
 *.rb                   # Ruby Script
 
-# Markup and Documentation:
+# Documentation and Markup
 *.md                   # Markdown
 *.rst                  # reStructuredText
 *.adoc                 # AsciiDoc
 *.txt                  # Plain Text
 
-# Archive and Compressed Files:
+# Archive and Compressed Files
 *.zip                  # ZIP Archive
 *.tar                  # TAR Archive
 *.gz                   # GZIP Archive
@@ -55,7 +59,7 @@ fi             # Regular File
 *.7z                   # 7-Zip Archive
 *.rar                  # RAR Archive
 
-# Images:
+# Images
 *.png                  # PNG Image
 *.jpg                  # JPEG Image
 *.jpeg                 # JPEG Image
@@ -63,20 +67,20 @@ fi             # Regular File
 *.bmp                  # BMP Image
 *.svg                  # SVG Image
 
-# Audio:
+# Audio Files
 *.mp3                  # MP3 Audio
 *.wav                  # WAV Audio
 *.flac                 # FLAC Audio
 *.aac                  # AAC Audio
 *.ogg                  # OGG Audio
 
-# Video:
+# Video Files
 *.mp4                  # MP4 Video
 *.mkv                  # MKV Video
 *.mov                  # MOV Video
 *.avi                  # AVI Video
 
-# Programming Languages:
+# Programming Languages
 *.c                    # C Source
 *.cpp                  # C++ Source
 *.h                    # C Header
@@ -87,7 +91,7 @@ fi             # Regular File
 *.go                   # Go
 *.dart                 # Dart
 
-# Special Files:
+# Special Files
 *.Dockerfile           # Dockerfile
 *.makefile             # Makefile
 *.gitignore            # Git Ignore
@@ -96,17 +100,7 @@ fi             # Regular File
 *README.md             # README Markdown
 LICENSE                # License File
 
-# Archives or compressed file extensions:
-*.tar.gz        
-*.tar.bz2       
-*.tar.xz        
-*.zip           
-*.7z            
-*.xz            
-*.gz            
-*.bz2           
-*.rar           
-*.zst           
-
-# Default Icons for unspecified files:
+###############################################################################
+# Default Icon for Unspecified Files
+###############################################################################
 *.*                    # Generic File Icon

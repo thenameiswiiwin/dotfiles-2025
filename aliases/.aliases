@@ -2,6 +2,9 @@
 alias bu='brew cleanup && brew update && brew upgrade && brew cleanup && brew doctor'
 alias bo='brew outdated'
 
+# Docker
+alias dockerps="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
+
 # Neovim configuration aliases
 alias v='nvim'
 alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
@@ -12,10 +15,10 @@ alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
 # Quickly edit dotfiles
 alias dotfiles="nvim ~/.dotfiles"
 
-# Eza
+# Eza (Improved 'ls' commands)
 alias l='eza'
-alias ll='l -lh --git --icons'
-alias la='ll -a'
+alias ll='l -l -h --git --icons'
+alias la='ll -a -h --git --icons'
 alias ls='l --icons --long --header --group-directories-first'
 
 # Zsh
@@ -23,11 +26,11 @@ alias zc='nvim $HOME/.zshrc'
 alias za='nvim $HOME/.aliases'
 alias zs='source $HOME/.zshrc'
 
-# Port
+# Network Utilities
 alias port='sudo lsof -i'
 alias ps='ps aux | grep'
 
-# Git
+# Git commands
 alias gaa='git add -A'
 alias gc='git commit -m'
 alias gs='git status'
@@ -45,80 +48,26 @@ alias gsp='git subtree push --prefix dist origin gh-pages'
 # Smarter directory navigation
 alias z='zoxide'
 
-# Tmux
+# Tmux management
 alias t='tmux'
 alias ta='t attach -t'
 alias tc='nvim $HOME/.tmux.conf'
 alias tcs='tmux source $HOME/.tmux.conf'
 
-
-# Replace Cat with Bat
+# Replace Cat with Bat for better syntax highlighting
 alias cat='bat --paging=never --style=plain'
 
-# Finder
+# Finder utilities
 alias hidedesktop='defaults write com.apple.finder CreateDesktop -bool false && killall Finder'
 alias showdesktop='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
 alias showall='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
 alias hideall='defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder'
 
-# Clean .DS_Store files recursively
+# Clean up .DS_Store files recursively
 alias dsclean='sudo find / -name ".DS_Store" -exec rm -v {} \;'
 
 # Flush DNS cache
 alias flush='sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder && echo "DNS cache flushed"'
-# Brew
-alias bu='brew cleanup && brew update && brew upgrade && brew cleanup && brew doctor'
-alias bo='brew outdated'
-
-# Eza
-alias l='eza'
-alias ll='l -l -h --git --icons'
-alias la='ll -a -h --git --icons'
-
-# Zsh
-alias zc='v $HOME/.zshrc'
-alias za='v $HOME/.aliases'
-alias zs='source $HOME/.zshrc'
-
-# Port
-alias port='sudo lsof -i'
-alias ps='ps aux | grep'
-
-# Git
-alias gaa='git add -A'
-alias gc='git commit -m'
-alias gs='git status'
-alias gp='git push -u'
-alias gw='git worktree'
-alias ghc='gh repo create'
-alias ghcl='gh repo clone'
-alias ghf='gh repo fork'
-alias cb='git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff {1} --color=always" --pointer="" | xargs git checkout'
-
-# Gh Pages
-alias gad="git add dist -f"
-alias gsp="git subtree push --prefix dist origin gh-pages"
-
-# Tmux
-alias t='tmux'
-alias ta="t a -t"
-alias tc="v $HOME/.tmux.conf"
-alias tcs="tmux source $HOME/.tmux.conf"
-
-# Cat -> Bat
-alias cat='bat'
-
-# Usefull stuff for presentation and seeing dotfiles
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-alias showall='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
-alias hideall='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
-
-# Get rid of .DS_Store files recursively
-alias dsclean="sudo find / -name ".DS_Store" -depth -exec rm {} \;"
-
-# Flush your dns cache
-alias flush='dscacheutil -flushcache'
 
 # System Utilities
 alias reload='exec $SHELL'

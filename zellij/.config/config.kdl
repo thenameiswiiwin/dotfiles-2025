@@ -1,13 +1,14 @@
 keybinds clear-defaults=true {
+    # Keybindings for different modes
     normal {
-        // Uncomment this and adjust key if using copy_on_select=false
+        // Uncomment and adjust keybinding if using copy_on_select=false
         // bind "Alt c" { Copy; }
     }
     locked {
-        bind "Ctrl g" { SwitchToMode "Normal"; }
+        bind "Ctrl g" { SwitchToMode "Normal"; }  # Exit locked mode
     }
     resize {
-        bind "Ctrl k" { SwitchToMode "Normal"; }
+        bind "Ctrl k" { SwitchToMode "Normal"; }  # Exit resize mode
         bind "h" "Left" { Resize "Increase Left"; }
         bind "j" "Down" { Resize "Increase Down"; }
         bind "k" "Up" { Resize "Increase Up"; }
@@ -20,7 +21,7 @@ keybinds clear-defaults=true {
         bind "-" { Resize "Decrease"; }
     }
     pane {
-        bind "Ctrl a" { SwitchToMode "Normal"; }
+        bind "Ctrl a" { SwitchToMode "Normal"; }  # Exit pane mode
         bind "h" "Left" { MoveFocus "Left"; }
         bind "l" "Right" { MoveFocus "Right"; }
         bind "j" "Down" { MoveFocus "Down"; }
@@ -37,7 +38,7 @@ keybinds clear-defaults=true {
         bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0; }
     }
     tab {
-        bind "Ctrl t" { SwitchToMode "Normal"; }
+        bind "Ctrl t" { SwitchToMode "Normal"; }  # Exit tab mode
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "h" "Left" "Up" "k" { GoToPreviousTab; }
         bind "l" "Right" "Down" "j" { GoToNextTab; }
@@ -58,16 +59,16 @@ keybinds clear-defaults=true {
 }
 
 plugins {
-    tab-bar { path "tab-bar"; }
-    status-bar { path "status-bar"; }
-    strider { path "strider"; }
-    compact-bar { path "compact-bar"; }
+    tab-bar { path "tab-bar"; }          # Tab bar plugin
+    status-bar { path "status-bar"; }    # Status bar plugin
+    strider { path "strider"; }          # Strider plugin
+    compact-bar { path "compact-bar"; }  # Compact bar plugin
 }
 
 themes {
     dracula {
-        fg 248 248 242
-        bg 40 42 54
+        fg 248 248 242  # Foreground color
+        bg 40 42 54     # Background color
         red 255 85 85
         green 80 250 123
         yellow 241 250 140
@@ -80,14 +81,15 @@ themes {
     }
 }
 
+# Apply Dracula theme
 theme "dracula"
 
-// Misc settings
-mouse_mode true
-pane_frames true
-auto_layout true
-scroll_buffer_size 10000
-copy_on_select false
-copy_clipboard "primary"
-scrollback_editor "/usr/bin/vim"
-mirror_session false
+# Miscellaneous settings
+mouse_mode true                # Enable mouse mode
+pane_frames true               # Display pane frames
+auto_layout true               # Automatically adjust layout
+scroll_buffer_size 10000       # Set scrollback buffer size
+copy_on_select false           # Disable copy on select
+copy_clipboard "primary"       # Use the primary clipboard for copying
+scrollback_editor "/usr/bin/vim" # Editor for scrollback
+mirror_session false           # Disable session mirroring

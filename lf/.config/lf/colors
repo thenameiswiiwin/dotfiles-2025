@@ -1,26 +1,31 @@
 # vim:ft=dircolors
-# This is a dircolors configuration file. It includes color settings and file type mappings.
-# Entries with a leading "#" are comments or examples and may not be implemented.
+# Dircolors Configuration File
+# This file defines color settings and file type mappings for use with `ls` and similar commands.
+# Lines beginning with "#" are comments or examples and are not applied.
 
-# Default values for file types (dircolors standards):
+###############################################################################
+# Default File Types
+###############################################################################
 di      01;34           # Directory
 ln      01;36           # Symbolic Link
-or      31;01           # Orphan
+or      31;01           # Orphaned Link
 tw      34              # Sticky Other Writable
 ow      34              # Other Writable
-st      01;34           # Sticky
-pi      33              # FIFO
+st      01;34           # Sticky Directory
+pi      33              # FIFO (Named Pipe)
 so      01;35           # Socket
 bd      33;01           # Block Device
 cd      33;01           # Character Device
-su      01;32           # SetUID
-sg      01;32           # SetGID
-ex      01;32           # Executable
-fi      00              # File
+su      01;32           # SetUID Executable
+sg      01;32           # SetGID Executable
+ex      01;32           # Executable File
+fi      00              # Regular File
 
-# File extensions and their colors (archives, images, audio, etc.)
+###############################################################################
+# File Extensions
+###############################################################################
 
-# Archives or compressed files:
+# Archives and Compressed Files
 *.tar   01;31
 *.tgz   01;31
 *.zip   01;31
@@ -36,7 +41,7 @@ fi      00              # File
 *.zst   01;31
 *.lz4   01;31
 
-# Image and video formats:
+# Image and Video Files
 *.jpg   01;35
 *.jpeg  01;35
 *.png   01;35
@@ -51,7 +56,7 @@ fi      00              # File
 *.avi   01;35
 *.mov   01;35
 
-# Audio formats:
+# Audio Files
 *.mp3   00;36
 *.flac  00;36
 *.aac   00;36
@@ -60,15 +65,20 @@ fi      00              # File
 *.m4a   00;36
 *.opus  00;36
 
-# Other file extensions (add or customize as needed):
-*.txt   00;37           # Text files
-*.log   00;37           # Log files
-*.md    00;37           # Markdown files
-*.sh    01;32           # Shell scripts
-*.py    01;32           # Python scripts
-*.js    01;33           # JavaScript files
-*.html  01;33           # HTML files
-*.css   01;33           # CSS files
-*.json  01;33           # JSON files
+# Documents and Text Files
+*.txt   00;37           # Plain Text Files
+*.log   00;37           # Log Files
+*.md    00;37           # Markdown Files
 
-# Additional configurations or file types can be added below as required.
+# Code and Scripts
+*.sh    01;32           # Shell Scripts
+*.py    01;32           # Python Scripts
+*.js    01;33           # JavaScript Files
+*.html  01;33           # HTML Files
+*.css   01;33           # CSS Files
+*.json  01;33           # JSON Files
+
+###############################################################################
+# Additional Configurations
+###############################################################################
+# Add any additional file types or specific configurations as required below.

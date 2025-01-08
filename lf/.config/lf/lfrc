@@ -1,8 +1,8 @@
 # https://github.com/gokcehan/lf/wiki/Previews
+
+# Settings
 set previewer ~/.config/lf/lf_kitty_preview
 set cleaner ~/.config/lf/lf_kitty_clean
-
-# Basic Settings
 set shell zsh
 set scrolloff 10
 set dircounts
@@ -45,7 +45,6 @@ cmd copy-path ${{
     printf '%s' "$fx" | xclip -selection clipboard
 }}
 
-# Trash Commands
 cmd trash ${{
     for file in $fx; do
         trash-put "$file"
@@ -66,8 +65,6 @@ cmd edit-config ${{
     lf -remote "send $id source ~/.config/lf/lfrc"
 }}
 
-map C edit-config
-
 cmd toggle_preview ${{
     if [ "$lf_preview" = "true" ]; then
         lf -remote "send $id :set preview false; set ratios 1:5"
@@ -76,12 +73,8 @@ cmd toggle_preview ${{
     fi
 }}
 
-map zp toggle_preview
-
-# Editor Shortcut
+# Key Mappings
 map e $EDITOR "$f"
-
-# File Management Shortcuts
 map . set hidden!
 map dd trash
 map dr restore_trash
@@ -94,21 +87,3 @@ map mf mkfile
 map md mkdir
 map Y :copy-path
 map du disk-usage
-
-map Z :zi
-
-# Navigate to Symlink Target
-map gl &{{
-    target="$(realpath -s -- "$(readlink -- "$f")")"
-    lf -remote "send $id select '$target'"
-}}
-
-# Quick Navigation Shortcuts
-map gD cd ~/documents
-map gd cd ~/downloads
-map gp cd ~/pictures
-map gc cd ~/.config
-map gr cd ~/repos
-map gv cd ~/videos
-map gs cd ~/.local/bin
-map gt cd ~/.local/share/Trash/files
