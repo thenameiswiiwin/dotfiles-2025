@@ -29,7 +29,7 @@ brew bundle
 ### Symlink dotfiles
 
 ```bash
-stow aliases bat bin btop dooit kitty lazygit nvim tmux wezterm zsh zellij lf pistol taskell hammerspoon rectangle git gh github-copilot keyboard lf
+stow aliases bat bin btop dooit kitty lazygit nvim tmux wezterm zsh zellij lf pistol taskell hammerspoon rectangle gh github-copilot keyboard lf
 ```
 
 ## Scripts
