@@ -13,6 +13,9 @@ vim.o.showcmdloc = "statusline"
 vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 vim.opt.swapfile = false
 
+
+vim.g.lazyvim_picker = "telescope"
+
 vim.g.clipboard = {
   name = "macOS-clipboard",
   copy = {["+"] = "pbcopy", ["*"] = "pbcopy"},
