@@ -1,18 +1,17 @@
 return {
   {
-    'stevearc/oil.nvim',
+    "stevearc/oil.nvim",
     opts = {},
     keys = {
       {
-        '-',
+        "-",
         function()
-          require('oil').open()
+          require("oil").open()
         end,
-        desc = 'Open parent directory',
+        desc = "Open parent directory",
       },
     },
-    dependencies = {
-      { 'nvim-tree/nvim-web-devicons', opts = {} },
-    },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 }
+

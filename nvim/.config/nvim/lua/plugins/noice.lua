@@ -1,16 +1,16 @@
 return {
-  'folke/noice.nvim',
+  "folke/noice.nvim",
   opts = {
     presets = {
-      lsp_doc_border = true, -- Adds a border around LSP hover docs
+      lsp_doc_border = true,
     },
     lsp = {
       progress = {
-        enabled = true, -- Enables LSP progress messages
+        enabled = true,
       },
     },
     messages = {
-      enabled = false, -- Disables Noice messages to avoid clutter
+      enabled = false,
     },
   },
 }

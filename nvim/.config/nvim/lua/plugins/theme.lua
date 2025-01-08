@@ -1,26 +1,33 @@
--- Detect macOS dark mode using the system command
+-- https://github.com/jascha030/macos-nvim-dark-mode
 local os_is_dark = function()
-  return (vim.fn.system([[defaults read -g AppleInterfaceStyle 2>/dev/null || echo "light"]])):find('dark') ~= nil
+    return (vim.call(
+        'system',
+        [[echo $(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo 'dark' || echo 'light')]]
+    )):find('dark') ~= nil
 end
 
 return {
   {
     -- https://github.com/catppuccin/nvim
     'catppuccin/nvim',
-    name = 'catppuccin',
+    name = "catppuccin",
     opts = {
       transparent_background = true,
       integrations = {
         notify = true,
         mini = true,
       },
-    },
+    }
   },
   {
-    'LazyVim/LazyVim',
+    "LazyVim/LazyVim",
     opts = function(_, opts)
-      -- Dynamically set colorscheme based on macOS appearance
-      opts.colorscheme = os_is_dark() and 'catppuccin-frappe' or 'catppuccin-latte'
+      if os_is_dark() then
+        -- colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
+        opts.colorscheme = 'catppuccin-frappe'
+      else
+        opts.colorscheme = 'catppuccin-latte'
+      end
     end,
   },
 }

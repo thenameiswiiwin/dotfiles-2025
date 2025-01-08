@@ -1,41 +1,30 @@
 return {
   {
-    'NeogitOrg/neogit',
+    "NeogitOrg/neogit",
     dependencies = {
-      'nvim-lua/plenary.nvim',
-      'sindrets/diffview.nvim',
+      "nvim-lua/plenary.nvim",
+      "sindrets/diffview.nvim",
     },
-    cmd = 'Neogit',
-    branch = 'master',
-    keys = {
-      { '<leader>gn', '<cmd>Neogit<cr>', desc = 'Open Neogit' },
-    },
+    cmd = "Neogit",
+    branch = "master",
+    keys = { { "<leader>gn", "<cmd>Neogit<cr>", desc = "Neogit" } },
     opts = {
       integrations = {
-        diffview = true, -- Enable integration with Diffview
+        diffview = true,
       },
     },
   },
   {
-    'sindrets/diffview.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    "sindrets/diffview.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
     cmd = {
-      'DiffviewOpen',
-      'DiffviewClose',
-      'DiffviewToggleFiles',
-      'DiffviewFocusFiles',
-      'DiffviewRefresh',
-      'DiffviewFileHistory',
+      "DiffviewOpen",
+      "DiffviewClose",
+      "DiffviewToggleFiles",
+      "DiffviewFocusFiles",
+      "DiffviewRefresh",
+      "DiffviewFileHistory",
     },
-    keys = {
-      { '<leader>gd', '<cmd>DiffviewOpen<cr>', desc = 'Open Diffview' },
-    },
-    opts = {
-      view = {
-        default = {
-          layout = 'diff2_horizontal', -- Example customization for Diffview layout
-        },
-      },
-    },
+    keys = { { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Diffview Open" } },
   },
 }

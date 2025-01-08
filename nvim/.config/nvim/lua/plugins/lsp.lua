@@ -1,32 +1,32 @@
 return {
   {
-    'neovim/nvim-lspconfig',
-    init = function()
-      local keys = require('lazyvim.plugins.lsp.keymaps').get()
-      table.insert(keys, { 'K', false }) -- Disable the default `K` keymap
-      table.insert(keys, { 'gK', vim.lsp.buf.hover, desc = 'LSP Hover' }) -- Add custom keymap for hover
-    end,
+    "neovim/nvim-lspconfig",
+  init = function()
+    local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      keys[#keys + 1] = { "K", false }
+      keys[#keys + 1] = { "gK", vim.lsp.buf.hover }
+    end
   },
   {
-    'VidocqH/lsp-lens.nvim',
-    opts = {
+    "VidocqH/lsp-lens.nvim",
+    ops = {
       enable = true,
-      include_declaration = false, -- Exclude references to declarations
-      sections = {
-        definition = false, -- Disable definition requests
-        references = true, -- Enable references
-        implementation = true, -- Enable implementation requests
+      include_declaration = false, -- Reference include declaration
+      sections = { -- Enable / Disable specific request
+        definition = false,
+        references = true,
+        implementation = true,
       },
       ignore_filetype = {
-        'prisma', -- Ignore specific filetypes
+        "prisma",
       },
     },
   },
   {
-    'mhanberg/output-panel.nvim',
-    event = 'VeryLazy',
+    "mhanberg/output-panel.nvim",
+    event = "VeryLazy",
     keys = {
-      { '<leader>uo', '<cmd>OutputPanel<cr>', desc = 'Toggle LSP Output Panel' },
+      { "<leader>uo", "<cmd>OutputPanel<cr>", desc = "Toggle LSP output" },
     },
     config = true,
   },

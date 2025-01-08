@@ -1,6 +1,3 @@
-;; Highlight and conceal variable assignments in Bash
-;; Place this file in `after/queries/bash/highlights.scm`
+; inherits: bash
+((variable_assignment value: (word) @string)) (#set! conceal ".")
 
-(variable_assignment
-  value: (word) @string
-) (#set! conceal ".")

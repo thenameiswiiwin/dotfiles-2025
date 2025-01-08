@@ -98,10 +98,14 @@ bindkey -s "^f" "tmux-sessionizer\n"
 autoload -Uz compinit
 compinit
 
+# Uncomment for GitHub Copilot CLI if needed
+eval "$(github-copilot-cli alias -- "$0")"
+eval "$(atuin init zsh)"
+
 # Initialize environment variables and tools
 eval "$(/usr/local/bin/brew shellenv)"  # For Homebrew
 eval "$(fnm env --use-on-cd --log-level=quiet)"  # For fnm (Node.js version manager)
 eval "$(zoxide init zsh)"  # For zoxide (faster navigation)
 
-# Uncomment for GitHub Copilot CLI if needed
-# eval "$(github-copilot-cli alias -- "$0")"
+
+. "$HOME/.atuin/bin/env"

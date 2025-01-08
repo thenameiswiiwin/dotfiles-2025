@@ -29,7 +29,7 @@ brew bundle
 ### Symlink dotfiles
 
 ```bash
-stow bin kitty lazygit nvim tmux wezterm zsh zellij bat lf pistol
+stow aliases rectangle github-copilot hushlogin stow bin kitty lazygit nvim tmux wezterm zsh zellij bat lf pistol
 ```
 
 ## Scripts
@@ -120,5 +120,9 @@ chmod +x osx.sh install.sh
 ### LazyVim
 
 - [LazyVim](https://github.com/LazyVim/LazyVim) - A pre-configured Neovim setup optimized for developers.
+
+### Atuin
+
+- [Atuin](atuin.sh) - Sync, search and backup shell history with Atuin
 
 ---

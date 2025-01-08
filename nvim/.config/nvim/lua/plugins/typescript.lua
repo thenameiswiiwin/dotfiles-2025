@@ -1,22 +1,23 @@
 return {
   {
-    'neovim/nvim-lspconfig',
-    dependencies = { 'jose-elias-alvarez/typescript.nvim' },
+    "neovim/nvim-lspconfig",
+    dependencies = { "jose-elias-alvarez/typescript.nvim" },
     opts = {
       servers = {
         tsserver = {
           settings = {
             typescript = {
               inlayHints = {
+                -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
                 includeInlayEnumMemberValueHints = true,
                 includeInlayFunctionLikeReturnTypeHints = true,
                 includeInlayFunctionParameterTypeHints = true,
                 includeInlayParameterNameHints = 'all',
-                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                includeInlayParameterNameHintsWhenArgumentMatchesName = true, -- false
                 includeInlayPropertyDeclarationTypeHints = true,
                 includeInlayVariableTypeHints = true,
-                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-              },
+                includeInlayVariableTypeHintsWhenTypeMatchesName = true -- false
+              }
             },
             javascript = {
               inlayHints = {
@@ -27,8 +28,8 @@ return {
                 includeInlayParameterNameHintsWhenArgumentMatchesName = true,
                 includeInlayPropertyDeclarationTypeHints = true,
                 includeInlayVariableTypeHints = true,
-                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-              },
+                includeInlayVariableTypeHintsWhenTypeMatchesName = true
+              }
             },
           },
         },
@@ -36,11 +37,11 @@ return {
     },
   },
   {
-    'dmmulroy/tsc.nvim',
+    "dmmulroy/tsc.nvim",
     config = true,
-    cmd = 'TSC',
+    cmd = "TSC",
     keys = {
-      { '<leader>tc', '<cmd>TSC<cr>', desc = 'Type-check' },
-    },
-  },
+      { "<leader>tc", "<cmd>TSC<cr>", desc = "Type-check" },
+    }
+  }
 }

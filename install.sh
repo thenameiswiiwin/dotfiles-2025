@@ -43,6 +43,7 @@ brew install gh
 brew install git
 brew install glow
 brew install hyperfine
+brew install atuin
 brew install jq
 brew install kitty
 brew install lazydocker
@@ -65,8 +66,8 @@ brew install zoxide
 brew install 1password
 brew install 1password-cli
 
-# Install zap - this didn't work via script
-# zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
+# Install zap 
+zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
 
 # Node.js and npm setup
 echo "Installing Node.js via fnm..."

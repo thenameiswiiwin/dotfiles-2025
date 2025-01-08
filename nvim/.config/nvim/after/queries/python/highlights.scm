@@ -1,21 +1,13 @@
-;; Treesitter conceal rules for Python
-;; Place this file in `after/queries/python/highlights.scm`
+(("not" @keyword.operator) (set! conceal "¬"))
+("or" @keyword.operator (set! conceal "∨"))
+("and" @keyword.operator (set! conceal "∧"))
+("in" @keyword.operator (set! conceal "∈"))
 
-;; Logical operators
-((identifier) @operator (#eq? @operator "not") (#set! conceal "¬"))
-((identifier) @operator (#eq? @operator "or") (#set! conceal "∨"))
-((identifier) @operator (#eq? @operator "and") (#set! conceal "∧"))
-((identifier) @operator (#eq? @operator "in") (#set! conceal "∈"))
+("==" @operator (set! conceal "≡"))
+("!=" @operator (set! conceal "≢"))
+("<=" @operator (set! conceal "≤"))
+(">=" @operator (set! conceal "≥"))
+("*" @operator (set! conceal "∙"))
 
-;; Comparison operators
-((identifier) @operator (#eq? @operator "==") (#set! conceal "≡"))
-((identifier) @operator (#eq? @operator "!=") (#set! conceal "≢"))
-((identifier) @operator (#eq? @operator "<=") (#set! conceal "≤"))
-((identifier) @operator (#eq? @operator ">=") (#set! conceal "≥"))
-
-;; Arithmetic operators
-((identifier) @operator (#eq? @operator "*") (#set! conceal "∙"))
-
-;; Type annotations for int and float
-((type (identifier) @type (#eq? @type "int")) (#set! conceal "ℤ"))
-((type (identifier) @type (#eq? @type "float")) (#set! conceal "ℝ"))
+((type (identifier) @type) (#eq? @type "int") (set! conceal "ℤ"))
+((type (identifier) @type) (#eq? @type "float") (set! conceal "ℝ"))
