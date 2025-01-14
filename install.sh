@@ -36,17 +36,18 @@ if [ ! -d "$HOME/dotfiles" ]; then
 else
     echo "Dotfiles repository already cloned."
 fi
+brew bundle # Install all dependencies
 
 
 # Install zap 
-zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
+zsh -c 'zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep'
 
 # Node.js and npm setup
 echo "Installing Node.js via fnm..."
 eval "$(fnm env)"
 fnm install --lts
-fnm use --lts
-fnm default --lts
+fnm use -- --lts
+fnm default -- --lts
 
 echo "Installing global npm packages..."
 npm install -g fkill-cli @githubnext/github-copilot-cli npkill

@@ -9,7 +9,7 @@ if OS.mac?
 
   #Fonts
   brew cask font-jetbrains-mono 
-  brew cask font-jetbrains-mono-nerd-font f 
+  brew cask font-jetbrains-mono-nerd-font 
   brew cask font-victor-mono 
   brew cask font-victor-mono-nerd-font
   brew cask font-symbols-only-nerd-font
