@@ -13,6 +13,12 @@ export EDITOR="nvim"       # Default editor preference
 # Set terminal type for better compatibility
 export TERM="xterm-256color"
 
+# Avente (OpenAI)
+if [ -f "$HOME/.dotfiles/.secrets" ]; then
+    source "$HOME/.dotfiles/.secrets"
+fi
+export OPENAI_API_KEY=AVENTE_API_KEY
+
 # Load Cargo environment for Rust tools
 if [ -f "$HOME/.cargo/env" ]; then
   . "$HOME/.cargo/env"

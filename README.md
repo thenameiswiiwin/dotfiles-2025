@@ -42,6 +42,7 @@ stow aliases bat bin btop dooit kitty lazygit nvim tmux wezterm zsh zellij lf pi
 ```bash
 chmod +x osx.sh install.sh
 ./osx.sh
+./dock.sh
 ./install.sh
 ```
 

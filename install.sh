@@ -28,50 +28,21 @@ else
     brew update && brew upgrade
 fi
 
-# Install packages and applications
-echo "Installing packages and applications via Homebrew..."
-brew install bat
-brew install btop
-brew install brave-browser
-brew install cleanmymac
-brew install dooit
-brew install eza
-brew install fd
-brew install fzf
-brew install gdu
-brew install gh
-brew install git
-brew install glow
-brew install hyperfine
-brew install atuin
-brew install jq
-brew install kitty
-brew install lazydocker
-brew install lazygit
-brew install nordvpn
-brew install rectangle
-brew install ripgrep
-brew install spotify
-brew install stow
-brew install taskell
-brew install tmux
-brew install trash-cli
-brew install viddy
-brew install viu
-brew install watson
-brew install wezterm
-brew install wifi-password
-brew install zellij
-brew install zoxide
-brew install 1password
-brew install 1password-cli
+# Personal dotfiles
+echo "Installing personal dotfiles..."
+if [ ! -d "$HOME/dotfiles" ]; then
+    git clone https://github.com/thenameiswiiwin/dotfiles-2025.git ~/dotfiles
+    cd ~/dotfiles || exit
+else
+    echo "Dotfiles repository already cloned."
+fi
+
 
 # Install zap 
 zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
 
 # Node.js and npm setup
 echo "Installing Node.js via fnm..."
-brew install fnm
 eval "$(fnm env)"
 fnm install --lts
 fnm use --lts
@@ -110,7 +81,6 @@ python3 -m pip install --upgrade pip setuptools wheel
 echo "Installing Python packages..."
 pip3 install --user pylint flake8
 
-# GUI applications
 echo "Installing GUI applications..."
 # brew install azure-data-studio
 # brew install meetingbar
@@ -120,15 +90,23 @@ brew install orbstack
 echo "Cleaning up Homebrew..."
 brew cleanup
 
-# Fonts
-echo "Installing fonts..."
-brew install --cask font-jetbrains-mono font-jetbrains-mono-nerd-font font-victor-mono font-victor-mono-nerd-font font-symbols-only-nerd-font
-
 # Git configuration
 echo "Setting up Git..."
 git config --global user.name 'Huy Nguyen'
 git config --global user.email 'huyn.nguyen95@gmail.com'
 git config --global credential.helper store
+
+# Terminfo
+setup_terminfo() {
+    title "Configuring terminfo"
+
+    info "adding tmux.terminfo"
+    tic -x "$HOME/.dotfiles/resources/tmux.terminfo"
+
+    info "adding xterm-256color-italic.terminfo"
+    tic -x "$HOME/.dotfiles/resources/xterm-256color-italic.terminfo"
+}
+setup_terminfo 
 
 # Tmux Plugin Manager
 echo "Installing Tmux Plugin Manager..."
@@ -136,15 +114,6 @@ if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 else
     echo "Tmux Plugin Manager is already installed."
-fi
-
-# Personal dotfiles
-echo "Installing personal dotfiles..."
-if [ ! -d "$HOME/dotfiles" ]; then
-    git clone https://github.com/thenameiswiiwin/dotfiles-2025.git ~/dotfiles
-    cd ~/dotfiles
-else
-    echo "Dotfiles repository already cloned."
 fi
 
 echo ""
