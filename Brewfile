@@ -7,7 +7,6 @@ if OS.mac?
   brew "1password" # Password manager
   brew "1password/tap/1password-cli" # 1Password CLI
 
-  #Fonts
   brew cask font-jetbrains-mono 
   brew cask font-jetbrains-mono-nerd-font 
   brew cask font-victor-mono 
@@ -20,8 +19,6 @@ end
 
 tap "homebrew/bundle"
 
-
-# Install packages and applications
 brew "bat" # Cat clone with syntax highlighting
 brew "btop" # Better top
 brew "brave-browser" # Brave browser

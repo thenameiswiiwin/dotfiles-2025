@@ -126,4 +126,8 @@ chmod +x osx.sh install.sh
 
 - [Atuin](atuin.sh) - Sync, search and backup shell history with Atuin
 
+### Avente.nvim
+
+- [Avente.nvim](https://github.com/yetone/avante.nvim) - Neovim plugin designed to emulate the behaviour of the Cursor AI IDE. It provides users with AI-driven code suggestions and the ability to apply these recommendations directly to their source files with minimal effort.
+
 ---

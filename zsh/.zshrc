@@ -91,7 +91,7 @@ local dev_commands=(
 alias dev='printf "%s\n" "${dev_commands[@]}" | fzf --height 20% --header Commands | bash'
 
 # Bind tmux sessionizer to a hotkey
-bindkey -s "^f" "tmux-sessionizer\n"
+bindkey -s "^f" "bin/tmux-sessionizer\n"
 # Uncomment the next line to use Zellij instead of tmux
 # bindkey -s "^f" "zellij-switch\n"
 
@@ -127,5 +127,5 @@ eval "$(fnm env --use-on-cd --log-level=quiet)"
 # Initialize zoxide (faster directory navigation)
 eval "$(zoxide init zsh)"
 
-# Source Atuin environment
-. "$HOME/.atuin/bin/env"
+# Initialize atuin 
+eval "$(atuin init zsh)"

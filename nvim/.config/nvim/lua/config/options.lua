@@ -4,8 +4,8 @@
 
 local opt = vim.opt
 
-opt.foldlevel = 20
-opt.foldmethod = "expr"
+opt.foldlevel = 99
+opt.foldmethod = "manual"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 vim.o.cmdheight = 0
@@ -34,3 +34,4 @@ vim.opt.listchars = {
   conceal = "※",
 }
 vim.opt.list = true
+
