@@ -49,10 +49,6 @@ fnm install --lts
 fnm use -- --lts
 fnm default -- --lts
 
-echo "Installing global npm packages..."
-npm install -g fkill-cli @githubnext/github-copilot-cli npkill
-brew install yarn
-
 # Rust setup
 echo "Installing Rust..."
 if ! command -v rustc &> /dev/null; then
@@ -65,28 +61,6 @@ cargo install bob-nvim
 bob install stable
 bob use stable
 
-# Python setup
-echo "Installing Python..."
-if ! command -v python3 &> /dev/null; then
-    brew install python3
-else
-    echo "Python3 is already installed. Upgrading..."
-    brew upgrade python3
-fi
-
-echo "Setting up Python environment..."
-python3 -m ensurepip --upgrade
-python3 -m pip install --upgrade pip setuptools wheel
-
-# Python applications
-echo "Installing Python packages..."
-pip3 install --user pylint flake8
-
-echo "Installing GUI applications..."
-# brew install azure-data-studio
-# brew install meetingbar
-brew install orbstack
-
 # Clean up
 echo "Cleaning up Homebrew..."
 brew cleanup
@@ -97,17 +71,10 @@ git config --global user.name 'Huy Nguyen'
 git config --global user.email 'huyn.nguyen95@gmail.com'
 git config --global credential.helper store
 
-# Terminfo
-setup_terminfo() {
-    title "Configuring terminfo"
-
-    info "adding tmux.terminfo"
-    tic -x "$HOME/.dotfiles/resources/tmux.terminfo"
-
-    info "adding xterm-256color-italic.terminfo"
-    tic -x "$HOME/.dotfiles/resources/xterm-256color-italic.terminfo"
-}
-setup_terminfo 
+# GH Copilot
+gh auth login
+gh extension install github/gh-copilot
+gh extension upgrade gh-copilot
 
 # Tmux Plugin Manager
 echo "Installing Tmux Plugin Manager..."

@@ -5,21 +5,16 @@ alias bo='brew outdated'
 # Docker
 alias dockerps="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
 
-# Neovim configuration aliases
 alias v='nvim'
-alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
-alias nvim-kick="NVIM_APPNAME=kickstart nvim"
-alias nvim-chad="NVIM_APPNAME=NvChad nvim"
-alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
 
 # Quickly edit dotfiles
-alias dotfiles="nvim ~/.dotfiles"
+alias df="nvim $HOME/.dotfiles"
 
 # Eza (Improved 'ls' commands)
 alias l='eza'
-alias ll='l -l -h --git --icons'
-alias la='ll -a -h --git --icons'
+alias la='l -l -a -h --git --icons'
 alias ls='l --icons --long --header --group-directories-first'
+alias lt="eza --tree --level=2 --long --icons --git"
 
 # Zsh
 alias zc='nvim $HOME/.zshrc'
@@ -31,19 +26,23 @@ alias port='sudo lsof -i'
 alias ps='ps aux | grep'
 
 # Git commands
-alias gaa='git add -A'
+alias ga='git add'
+alias gaa='git add -p'
+alias gb='git branch'
+alias gba='git branch -a'
 alias gc='git commit -m'
+alias gca="git commit -a -m"
+alias gdiff="git diff"
 alias gs='git status'
-alias gp='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
+alias gpsh='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
+alias gpu="git pull origin"
 alias gw='git worktree'
 alias ghc='gh repo create'
 alias ghcl='gh repo clone'
 alias ghf='gh repo fork'
+alias glog="git log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit"
 alias cb='git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff {1} --color=always" --pointer="" | xargs git checkout'
-
-# GitHub Pages
-alias gad='git add dist -f'
-alias gsp='git subtree push --prefix dist origin gh-pages'
+alias gr='git remote'
 
 # Smarter directory navigation
 alias z='zoxide'
@@ -55,21 +54,10 @@ alias tc='nvim $HOME/.tmux.conf'
 alias tcs='tmux source $HOME/.tmux.conf'
 
 # Replace Cat with Bat for better syntax highlighting
-alias cat='bat --paging=never --style=plain'
-
-# Finder utilities
-alias hidedesktop='defaults write com.apple.finder CreateDesktop -bool false && killall Finder'
-alias showdesktop='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
-alias showall='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
-alias hideall='defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder'
+alias cat='bat'
 
 # Clean up .DS_Store files recursively
 alias dsclean='sudo find / -name ".DS_Store" -exec rm -v {} \;'
 
 # Flush DNS cache
 alias flush='sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder && echo "DNS cache flushed"'
-
-# System Utilities
-alias reload='exec $SHELL'
-alias restartdock='killall Dock'
-alias restartfinder='killall Finder'
