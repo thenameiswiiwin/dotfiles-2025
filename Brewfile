@@ -1,24 +1,24 @@
 if OS.mac?
   # macOS-specific tools
-  tap "homebrew/cask"
   tap "FelixKratz/formulae"
+  tap "1password/tap"
 
-  brew "felizkratz/formulae/sketchybar"
+  brew "sketchybar"
 
-  brew cask "hammerspoon"
-  brew cask "kitty"
-  brew cask "rectangle"
-  brew cask "1password"
-  brew cask "1password/tap/1password-cli" 
+  cask "hammerspoon"
+  cask "kitty"
+  cask "rectangle"
+  cask "1password"
+  cask "1password/tap/1password-cli" 
 
   # Fonts for macOS
-  brew cask "font-jetbrains-mono"
-  brew cask "font-jetbrains-mono-nerd-font"
-  brew cask "font-meslo-lg"
-  brew cask "font-meslo-lg-nerd-font"
-  brew cask "font-victor-mono"
-  brew cask "font-victor-mono-nerd-font"
-  brew cask "font-symbols-only-nerd-font"
+  cask "font-jetbrains-mono"
+  cask "font-jetbrains-mono-nerd-font"
+  cask "font-meslo-lg"
+  cask "font-meslo-lg-nerd-font"
+  cask "font-victor-mono"
+  cask "font-victor-mono-nerd-font"
+  cask "font-symbols-only-nerd-font"
 
 elsif OS.linux?
   # Linux-specific tools
@@ -55,9 +55,9 @@ brew "zellij"
 brew "zoxide"
 brew "zsh"
 
-brew cask "brave-browser"
-brew cask "docker"
-brew cask "nordvpn"
-brew cask "postman"
-brew cask "spotify"
-brew cask "wezterm"
+cask "brave-browser"
+cask "docker"
+cask "nordvpn"
+cask "postman"
+cask "spotify"
+cask "wezterm"

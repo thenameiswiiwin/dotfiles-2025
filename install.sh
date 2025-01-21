@@ -44,10 +44,17 @@ zsh -c 'zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/insta
 
 # Node.js and npm setup
 echo "Installing Node.js via fnm..."
-eval "$(fnm env)"
+FNM_CONFIG='eval "$(fnm env)"'
+if ! grep -q 'fnm env' ~/.dotfiles/.zshenv; then
+    echo "$FNM_CONFIG" >> ~/.dotfiles/.zshenv
+    echo "fnm configuration added to `~/.dotfiles/.zshenv"
+else
+    echo "fnm configuration already in ~/.dotfiles/.zshenv"
+fi
+eval "$FNM_CONFIG"
+echo "Installing the latest LTS version of Node.js..."
 fnm install --lts
-fnm use -- --lts
-fnm default -- --lts
+fnm default --lts
 
 # Rust setup
 echo "Installing Rust..."
