@@ -36,7 +36,7 @@ if [ ! -d "$HOME/dotfiles" ]; then
 else
     echo "Dotfiles repository already cloned."
 fi
-brew bundle # Install all dependencies
+brew bundle install # Install all dependencies
 
 
 # Install zap 
