@@ -1,2 +1,2 @@
-require('thenameiswiiwin.configs')
-require('thenameiswiiwin.lazy')
+require("thenameiswiiwin.configs")
+require("thenameiswiiwin.lazy")

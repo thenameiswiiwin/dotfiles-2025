@@ -3,7 +3,11 @@ if OS.mac?
   tap "FelixKratz/formulae"
   tap "1password/tap"
 
+  brew "kubectl"
   brew "sketchybar"
+  brew "starship"
+  brew "zsh-autosuggestions"
+  brew "zsh-syntax-highlighting"
 
   cask "hammerspoon"
   cask "kitty"

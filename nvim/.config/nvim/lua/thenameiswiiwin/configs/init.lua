@@ -1,2 +1,3 @@
-require("thenameiswiiwin.options")
-require("thenameiswiiwin.keymaps")
+require("thenameiswiiwin.configs.options")
+require("thenameiswiiwin.configs.keymaps")
+require("thenameiswiiwin.configs.misc")

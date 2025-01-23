@@ -1,45 +1,58 @@
+local base = {
+  red = "#ff657a",
+  maroon = "#F29BA7",
+  peach = "#ff9b5e",
+  yellow = "#eccc81",
+  green = "#a8be81",
+  teal = "#9cd1bb",
+  sky = "#A6C9E5",
+  sapphire = "#86AACC",
+  blue = "#5d81ab",
+  lavender = "#66729C",
+  mauve = "#b18eab",
+}
+
+local extend_base = function(value)
+  return vim.tbl_extend("force", base, value)
+end
+
 return {
-  "folke/tokyonight.nvim",
-  priority = 1000,
-  config = function()
-    local transparent = false -- set to true if you would like to enable transparency
-
-    local bg = "#011628"
-    local bg_dark = "#011423"
-    local bg_highlight = "#143652"
-    local bg_search = "#0A64AC"
-    local bg_visual = "#275378"
-    local fg = "#CBE0F0"
-    local fg_dark = "#B4D0E9"
-    local fg_gutter = "#627E97"
-    local border = "#547998"
-
-    require("tokyonight").setup({
-      style = "night",
-      transparent = transparent,
-      styles = {
-        sidebars = transparent and "transparent" or "dark",
-        floats = transparent and "transparent" or "dark",
+  "catppuccin",
+  optional = true,
+  opts = function()
+    ---@type CatppuccinOptions
+    return {
+      background = {
+        dark = "frappe",
+        light = "latte",
       },
-      on_colors = function(colors)
-        colors.bg = bg
-        colors.bg_dark = transparent and colors.none or bg_dark
-        colors.bg_float = transparent and colors.none or bg_dark
-        colors.bg_highlight = bg_highlight
-        colors.bg_popup = bg_dark
-        colors.bg_search = bg_search
-        colors.bg_sidebar = transparent and colors.none or bg_dark
-        colors.bg_statusline = transparent and colors.none or bg_dark
-        colors.bg_visual = bg_visual
-        colors.border = border
-        colors.fg = fg
-        colors.fg_dark = fg_dark
-        colors.fg_float = fg
-        colors.fg_gutter = fg_gutter
-        colors.fg_sidebar = fg_dark
-      end,
-    })
-
-    vim.cmd("colorscheme tokyonight")
+      color_overrides = {
+        latte = extend_base({
+          text = "#202027",
+          subtext1 = "#263168",
+          subtext0 = "#4c4f69",
+          overlay2 = "#737994",
+          overlay1 = "#838ba7",
+          base = "#fcfcfa",
+          mantle = "#EAEDF3",
+          crust = "#DCE0E8",
+          pink = "#EA7A95",
+          mauve = "#986794",
+          red = "#EC5E66",
+          peach = "#FF8459",
+          yellow = "#CAA75E",
+          green = "#87A35E",
+        }),
+        frappe = extend_base({
+          text = "#fcfcfa",
+          surface2 = "#535763",
+          surface1 = "#3a3d4b",
+          surface0 = "#30303b",
+          base = "#202027",
+          mantle = "#1c1d22",
+          crust = "#171719",
+        }),
+      },
+    }
   end,
 }

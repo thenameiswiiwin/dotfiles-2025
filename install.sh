@@ -36,25 +36,21 @@ if [ ! -d "$HOME/dotfiles" ]; then
 else
     echo "Dotfiles repository already cloned."
 fi
-brew bundle install # Install all dependencies
-
-
-# Install zap 
-zsh -c 'zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep'
+brew bundle # Install all dependencies
 
 # Node.js and npm setup
 echo "Installing Node.js via fnm..."
 FNM_CONFIG='eval "$(fnm env)"'
-if ! grep -q 'fnm env' ~/.dotfiles/.zshenv; then
-    echo "$FNM_CONFIG" >> ~/.dotfiles/.zshenv
-    echo "fnm configuration added to `~/.dotfiles/.zshenv"
+if ! grep -q 'fnm env' ~/.dotfiles/zsh/.zshrc; then
+    echo "$FNM_CONFIG" >> ~/.dotfiles/zsh/.zshrc
+    echo "fnm configuration added to ~/.dotfiles/zsh/.zshrc"
 else
-    echo "fnm configuration already in ~/.dotfiles/.zshenv"
+    echo "fnm configuration already in ~/.dotfiles/zsh/.zshrc"
 fi
 eval "$FNM_CONFIG"
 echo "Installing the latest LTS version of Node.js..."
 fnm install --lts
-fnm default --lts
+fnm use --lts
 
 # Rust setup
 echo "Installing Rust..."
